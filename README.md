@@ -1,0 +1,2 @@
+# botSousa
+Discord Chat Bot
