@@ -1,26 +1,26 @@
 {
-  "name": "bot-sousa",
-  "version": "1.0.0",
-  "description": "A simple chat bot for my discord channel.",
-  "main": "index.js",
+  "name": "sousabot",
+  "version": "1.1.1",
+  "description": "A simple chat bot for my personal server.",
+  "main": "server.js",
   "author": {
     "name": "Jon Sousa",
-    "url": "https://github.com/JonSousa/botSousa"
+    "url": ""
   },
   "scripts": {
-    "start": "babel-node --harmony index.js"
+    "start": "babel-node --harmony server.js"
   },
   "dependencies": {
-    "discord.js": "^11.3.0",
+    "cron": "^1.8.2",
+    "discord.js": "^12.5.1",
     "discord.js-commando": "^0.9.0",
-    "dotenv": "^4.0.0",
-    "fast-async": "^6.3.0",
-    "harmony": "0.0.1"
+    "harmony": "0.0.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-preset-latest": "^6.24.1",
     "babel-register": "^6.26.0"
   }
