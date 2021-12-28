@@ -11,7 +11,7 @@ let description = `Enter ${prefix} before any command:` + "\n" +
 
 const help = (message) => {
     if (message.content === (`${prefix}help`)) {
-        let embed = new Discord.RichEmbed()
+        let embed = new Discord.MessageEmbed()
                     .setAuthor('List of Commands:')
                     .setDescription(description);
 

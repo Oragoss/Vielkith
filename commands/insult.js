@@ -22,7 +22,7 @@ const insult = (message) => {
 
 
 const randomInsult = () => {
-    let helper = Math.floor(Math.random() * 4) + 1  //Return a number between 1 and 3
+    let helper = Math.floor(Math.random() * 5) + 1
     let insult = "No insult processed.";
     switch(helper) {
         case 1:
@@ -36,6 +36,9 @@ const randomInsult = () => {
         break
         case 4:
             insult = "You'd make an orc look pretty."
+        break
+        case 5:
+            insult = "I'd slap you but I'm afraid I'd catch something."
         break
     }
 

@@ -1,6 +1,16 @@
 import { prefix, token, owner } from './config.json';
 
 import Discord from 'discord.js';
+import {Player} from 'discord-music-player';
+
+const client = new Discord.Client({
+    owner: owner,
+});
+
+const player = new Player(client, {
+    leaveOnEmpty: false, // This options are optional.
+});
+client.player = player;
 
 //Commands
 import mirrormirror from './commands/mirrormirror';
@@ -15,20 +25,26 @@ import clap from './commands/clap';
 import advice from './commands/advice';
 import aww from './commands/aww';
 import changeRole from './commands/changeRole';
+import playMusic from './commands/playMusic';
 
 //Tasks
 
-const bot = new Discord.Client({
-    owner: owner,
+client.once('reconnecting', () => {
+    console.log('Reconnecting!');
 });
 
-
-bot.on('ready', () => {
-    console.log('Logged in as ' + bot.user.username + '!');
-    bot.user.setActivity('NotSpyingOnYou');
+client.once('disconnect', () => {
+    console.log('Disconnect!');
 });
 
-bot.on('message', async message => {
+client.on('ready', () => {
+    console.log('Logged in as ' + client.user.username + '!');
+    client.user.setActivity('NotSpyingOnYou');
+});
+
+client.on('message', async message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
     //Commands
     mirrormirror(message);
     insult(message);
@@ -42,13 +58,16 @@ bot.on('message', async message => {
     advice(message);
     aww(message);
     changeRole(message);
+
+    playMusic(message, client);
+
     //Tasks
 });
 
 // Create an event listener for new guild members
-bot.on('guildMemberAdd', (member) => {
+client.on('guildMemberAdd', (member) => {
     const greeting = `Hello ${member.user.username}! I am the Sousa Bot! Type ${prefix}help for a list of neat commands.`
     member.createDM(greeting);
 });
 
-bot.login(token)
+client.login(token)

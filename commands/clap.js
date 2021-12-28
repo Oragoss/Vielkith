@@ -8,17 +8,37 @@ const clap = (message) => {
 
     if (command === "clap")  {
         if(!args[0]) {
-            return message.reply("Sincerely or insincerely? I am far too busy to read your mind.");
+            return message.reply("Sincerely or insincerely? I am far too busy to read your mind.\n If you want me to direct the clap at someone mention them with an @.");
         }
-        if(args[0] === "sincere") {
-            Promise.resolve(message.channel.send("", {
-                file : clapImages.sincere[randomImageSincere()]
-            }));
+        if(!args[1]) {
+            if(args[0] === "sincere" || "sincerely") {
+                Promise.resolve(message.channel.send("Cheers!", {
+                    files : [clapImages.sincere[randomImageSincere()]]
+                }));
+            }
+            else if(args[0] === "insincere" || "insincerely") {
+                Promise.resolve(message.channel.send("Wow...", {
+                    files : [clapImages.insincere[randomImageInsincere()]]
+                }));
+            }
         }
-        else if(args[0] === "insincere") {
-            Promise.resolve(message.channel.send("", {
-                file : clapImages.insincere[randomImageInsincere()]
-            }));
+        if(args[1]) {
+            if(args[0] === "sincere" || "sincerely") {
+                const userList = message.mentions.users.map(user => {
+                    return `${user.username} `;
+                });
+                Promise.resolve(message.channel.send(`Cheers, ${userList}!`, {
+                    files : [clapImages.sincere[randomImageSincere()]]
+                }));
+            }
+            else if(args[0] === "insincere" || "insincerely") {
+                const userList = message.mentions.users.map(user => {
+                    return `${user.username} `;
+                });
+                Promise.resolve(message.channel.send(`${userList}, just... wow.`, {
+                    files : [clapImages.insincere[randomImageInsincere()]]
+                }));
+            }
         }
     }
 }

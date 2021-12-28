@@ -25,7 +25,7 @@ const aww = (message) => {
 
             let rnd = Math.floor(Math.random()*urls.length)
             Promise.resolve(message.channel.send(`${titles[rnd]}`, {
-                file : urls[rnd]
+                files : [urls[rnd]]
             }));
         });
     }
