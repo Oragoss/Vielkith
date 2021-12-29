@@ -1,3 +1,5 @@
+//NOT WORKING
+
 import {prefix} from '../config';
 //Try this one first
 //https://www.npmjs.com/package/discord-music-player
