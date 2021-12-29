@@ -1,16 +1,16 @@
 import { prefix, token, owner } from './config.json';
 
 import Discord from 'discord.js';
-import {Player} from 'discord-music-player';
+// import {Player} from 'discord-music-player';
 
 const client = new Discord.Client({
     owner: owner,
 });
 
-const player = new Player(client, {
-    leaveOnEmpty: false, // This options are optional.
-});
-client.player = player;
+// const player = new Player(client, {
+//     leaveOnEmpty: false, // This options are optional.
+// });
+// client.player = player;
 
 //Commands
 import mirrormirror from './commands/mirrormirror';
@@ -25,9 +25,8 @@ import clap from './commands/clap';
 import advice from './commands/advice';
 import aww from './commands/aww';
 import changeRole from './commands/changeRole';
-import playMusic from './commands/playMusic';
-
-//Tasks
+import funny from './commands/funny';
+// import playMusic from './commands/playMusic';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -58,10 +57,9 @@ client.on('message', async message => {
     advice(message);
     aww(message);
     changeRole(message);
+    funny(message);
 
-    playMusic(message, client);
-
-    //Tasks
+    // playMusic(message, client);
 });
 
 // Create an event listener for new guild members
