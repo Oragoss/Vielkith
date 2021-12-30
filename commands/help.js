@@ -7,7 +7,11 @@ let description = `Enter ${prefix} before any command:` + "\n" +
                   "\nflip = Flip a coin!\n" +
                   "\ninsult <@Username> = Insult someone! But beware, this power is a double edged sword.\n" +
                   "\nclap sincere OR insincere = Let someone know you appreciate them, or tell them they are full of themselves.\n" +
-                  "\nadvice = Conjure sage wisdom from the internet.";
+                  "\nawful = Be shown an awful image.\n" +
+                  "\ndndmeme = Be shown a dnd themed meme.\n" +
+                  "\nadvice = Conjure sage wisdom from the internet." +
+                  "\naww = See cute animals!" +
+                  "\nfunny = I will show you a funny picture\n";
 
 const help = (message) => {
     if (message.content === (`${prefix}help`)) {

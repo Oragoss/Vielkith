@@ -45,13 +45,11 @@ const clap = (message) => {
 
 const randomImageSincere = () => {
     let randInt = Math.floor(Math.random() * clapImages.sincere.length);  //Return a number between 1 and 3
-    console.log(randInt);
     return randInt;
 }
 
 const randomImageInsincere = () => {
     let randInt = Math.floor(Math.random() *  clapImages.insincere.length)  //Return a number between 1 and 3
-    console.log(randInt);
     return randInt;
 }
 

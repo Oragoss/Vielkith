@@ -27,6 +27,9 @@ import aww from './commands/aww';
 import changeRole from './commands/changeRole';
 import funny from './commands/funny';
 // import playMusic from './commands/playMusic';
+import awful from './commands/awful'
+import dndMeme from './commands/dndmeme';
+import chorus from './commands/chorus';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -42,6 +45,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+    chorus(message);
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     //Commands
@@ -58,7 +62,8 @@ client.on('message', async message => {
     aww(message);
     changeRole(message);
     funny(message);
-
+    awful(message);
+    dndMeme(message);
     // playMusic(message, client);
 });
 
