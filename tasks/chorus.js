@@ -1,11 +1,11 @@
-//TODO: Make this thing listen for when Drake says anything at all. Give it a random chance to respond back with some weird communite quote.
-//Need to check the message's user Id and see if it matches Drake's 
-
+import {prefix} from '../config';
 import {drake, triggerId} from '../config';
 
 const chorus = (message) => {
-    if(Math.floor(Math.random() * 100) >= 5 ) return;
-    if(message.author.username === triggerId) {
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase(); //The first word in the command sentence
+    if(message.author.username === triggerId || ((message.author.id === message.guild.ownerID) && command === "drake")) {
+        if(Math.floor(Math.random() * 100) >= 5 ) return;
         for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
             message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);
         }

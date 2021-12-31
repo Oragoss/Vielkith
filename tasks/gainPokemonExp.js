@@ -2,7 +2,8 @@ const fs = require('fs');
 
 const gainPokemonExp = (message) => {
     let user = `${message.author.username}#${message.author.discriminator}`;
-    fs.readFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', 'utf8', function readFileCallback(err, data) {
+    const file = 'D:\\WebProjects\\botSousa\\data\\pokemon.json';
+    fs.readFile(file, 'utf8', function readFileCallback(err, data) {
         if (err){
             console.log(err);
         } else {
@@ -20,11 +21,10 @@ const gainPokemonExp = (message) => {
                         }
 
                         let json = JSON.stringify(pokemon);
-                        fs.writeFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', json, 'utf8', function(err) {
+                        fs.writeFile(file, json, 'utf8', function(err) {
                             if(err) {
                                 return console.log(err);
                             }
-                            console.log("Update! " + pokemon[6].exp)
                         });
                     }
                 }

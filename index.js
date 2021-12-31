@@ -29,7 +29,7 @@ import funny from './commands/funny';
 // import playMusic from './commands/playMusic';
 import awful from './commands/awful'
 import dndMeme from './commands/dndmeme';
-import chorus from './commands/chorus';
+import chorus from './tasks/chorus';
 import pokemon from './commands/pokemon';
 import { cat, dog, ferret, chinchilla } from './commands/pet';
 import dictionary from './commands/dictionary';
@@ -49,12 +49,11 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    //These always listen
+    //Tasks
     chorus(message);
     gainPokemonExp(message);
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
-
     //Commands
     mirrormirror(message);
     insult(message);
