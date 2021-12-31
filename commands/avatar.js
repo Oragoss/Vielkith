@@ -1,23 +1,31 @@
 import {prefix} from '../config';
+import randomColor from '../tasks/setRandomColor';
+import Discord from 'discord.js';
 
 const avatar = (message) => {
-
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
     if(command === 'avatar') {
-        //How to have more than one tagged user
+        //If member wants his own avatar
         if(!args[0]) {
-            let avatarURL = message.author.displayAvatarURL;
-            return message.reply("", avatarURL);
-        }
-        else {
-            const avatarList = message.mentions.users.map(user => {
-                return `${user.username}'s avatar: ${user.displayAvatarURL}`;
+            var embed = new Discord.MessageEmbed()
+            .setColor(randomColor())
+            .setDescription('<@' + message.author.id + '>' + `'` +'s profile picture')
+            .setImage(message.author.avatarURL())
+            .setTimestamp()
+            .setFooter(`${message.author.username}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+            message.channel.send(embed)
+        //If member wants other people avatar:
+        } else {
+            message.mentions.users.map(user => {
+                message.channel.send(new Discord.MessageEmbed()
+                .setColor(randomColor())
+                .setDescription('<@' + user.id + '>' + `'` +'s profile picture'+' ')
+                .setImage(user.avatarURL())
+                .setTimestamp()
+                .setFooter(`${message.author.username}`, message.author.avatarURL()));
             });
-            return  message.channel.send(avatarList);
         }
     }
 }

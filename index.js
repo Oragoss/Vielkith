@@ -31,6 +31,7 @@ import awful from './commands/awful'
 import dndMeme from './commands/dndmeme';
 import chorus from './commands/chorus';
 import pokemon from './commands/pokemon';
+import { cat, dog, ferret, chinchilla } from './commands/pet';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -46,7 +47,9 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+    //These always listen
     chorus(message);
+    
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     //Commands
@@ -66,6 +69,10 @@ client.on('message', async message => {
     awful(message);
     dndMeme(message);
     pokemon(message);
+    cat(message);
+    dog(message);
+    ferret(message);
+    chinchilla(message);
     // playMusic(message, client);
 });
 

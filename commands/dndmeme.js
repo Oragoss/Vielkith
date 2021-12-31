@@ -5,7 +5,7 @@ const dndMeme = (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
-    if (command === "dndMeme" || command === "dndmeme") {
+    if (command.toLowerCase() === "dndmeme") {
         splitUrlTitlesAndPhotos("https://www.reddit.com/r/dndmemes.json", message);
     }
 }

@@ -1,29 +1,28 @@
 import {prefix} from '../config';
 
 const clap = (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
     if (command === "clap")  {
+        message.delete()
         if(!args[0]) {
             return message.reply("Sincerely or insincerely? I am far too busy to read your mind.\n If you want me to direct the clap at someone mention them with an @.");
         }
         if(!args[1]) {
-            if(args[0] === "sincere" || "sincerely") {
+            if(args[0] === "sincere" || args[0] === "sincerely") {
                 Promise.resolve(message.channel.send("Cheers!", {
                     files : [clapImages.sincere[randomImageSincere()]]
                 }));
             }
-            else if(args[0] === "insincere" || "insincerely") {
+            else if(args[0] === "insincere" || args[0] === "insincerely") {
                 Promise.resolve(message.channel.send("Wow...", {
                     files : [clapImages.insincere[randomImageInsincere()]]
                 }));
             }
         }
         if(args[1]) {
-            if(args[0] === "sincere" || "sincerely") {
+            if(args[0] === "sincere" || args[0] === "sincerely") {
                 const userList = message.mentions.users.map(user => {
                     return `${user.username} `;
                 });
@@ -31,7 +30,7 @@ const clap = (message) => {
                     files : [clapImages.sincere[randomImageSincere()]]
                 }));
             }
-            else if(args[0] === "insincere" || "insincerely") {
+            else if(args[0] === "insincere" || args[0] === "insincerely") {
                 const userList = message.mentions.users.map(user => {
                     return `${user.username} `;
                 });
@@ -71,12 +70,7 @@ const clapImages = {
     "http://i.imgur.com/wf5qvOM.gif",
     "http://i.imgur.com/9Zv4V.gif",
     "http://i.imgur.com/t8zvc.gif",
-    "http://cache.blippitt.com/wp-content/uploads/2012/06/Daily-Life-GIFs-06-The-Rock-Clapping.gif",
     "http://25.media.tumblr.com/tumblr_m00e9mCyWj1rqtbn0o1_500.gif",
-    "http://assets0.ordienetworks.com/images/GifGuide/clapping/Kurtclapping.gif",
-    "http://assets0.ordienetworks.com/images/GifGuide/clapping/riker.gif",
-    "http://assets0.ordienetworks.com/images/GifGuide/clapping/hp3.gif",
-    "http://assets0.ordienetworks.com/images/GifGuide/clapping/1292223254212-dumpfm-mario-Obamaclap.gif",
     "http://www.reactiongifs.com/wp-content/uploads/2013/01/applause.gif"
   ],
   insincere: [
