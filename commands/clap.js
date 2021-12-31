@@ -5,7 +5,7 @@ const clap = (message) => {
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
     if (command === "clap")  {
-        message.delete()
+        message.delete();
         if(!args[0]) {
             return message.reply("Sincerely or insincerely? I am far too busy to read your mind.\n If you want me to direct the clap at someone mention them with an @.");
         }

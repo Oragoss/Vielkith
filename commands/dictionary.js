@@ -20,7 +20,7 @@ const dictionary = (message) => {
                 for(let i = 0; i < result[0].meanings.length; i++) {
                     for (let x = 0; x < result[0].meanings[i].definitions.length; x++) {
                         definitions.push(
-                            {name:"Definition", value: result[0].meanings[i].definitions[x].definition},
+                            {name:"Definition", value: capitalizeFirstLetter(result[0].meanings[i].definitions[x].definition)},
                             {name:"Synonyms", value: JSON.stringify(result[0].meanings[i].definitions[x].synonyms)}
                         )
                     }
@@ -29,7 +29,7 @@ const dictionary = (message) => {
                 .setColor(randomColor())
                 .setTitle(capitalizeFirstLetter(args[0]))
                 .setURL(`https://www.dictionary.com/browse/${args[0]}`)
-                .setDescription(JSON.stringify(result[0].origin))
+                .setDescription(JSON.stringify(result[0].origin) || "")
                 .addFields(
                     definitions
                 )

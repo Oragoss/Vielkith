@@ -33,6 +33,7 @@ import chorus from './commands/chorus';
 import pokemon from './commands/pokemon';
 import { cat, dog, ferret, chinchilla } from './commands/pet';
 import dictionary from './commands/dictionary';
+import gainPokemonExp from './tasks/gainPokemonExp';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -50,6 +51,7 @@ client.on('ready', () => {
 client.on('message', async message => {
     //These always listen
     chorus(message);
+    gainPokemonExp(message);
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 

@@ -16,7 +16,7 @@ let description = `Enter ${prefix} before any command:` + "\n" +
                   "\nadvice = Conjure sage wisdom from the internet.\n" +
                   "\ndefine = Look up a word!\n" +
                   "\naww = See cute animals!\n" +
-                  "\nfunny = I will show you a funny picture\n";
+                  "\nfunny or meme = I will show you a funny picture\n";
 
 const help = (message) => {
     if (message.content === (`${prefix}help`)) {
