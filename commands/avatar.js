@@ -9,7 +9,7 @@ const avatar = (message) => {
     if(command === 'avatar') {
         //If member wants his own avatar
         if(!args[0]) {
-            var embed = new Discord.MessageEmbed()
+            let embed = new Discord.MessageEmbed()
             .setColor(randomColor())
             .setDescription('<@' + message.author.id + '>' + `'` +'s profile picture')
             .setImage(message.author.avatarURL())

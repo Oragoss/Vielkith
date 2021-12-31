@@ -1,5 +1,6 @@
 import {prefix} from '../config';
 import fetch from 'node-fetch';
+import capitalizeFirstLetter from '../tasks/capitalizeFirstLetter';
 const numberOfPokemon = 898;
 const fs = require('fs');
 
@@ -76,9 +77,5 @@ const addEntry = (message, user, pokemon) => {
         });
     }); 
 }
-
-const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
 export default pokemon;

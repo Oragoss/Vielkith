@@ -14,6 +14,7 @@ let description = `Enter ${prefix} before any command:` + "\n" +
                   "\nawful = Be shown an awful image.\n" +
                   "\ndndmeme = Be shown a dnd themed meme.\n" +
                   "\nadvice = Conjure sage wisdom from the internet.\n" +
+                  "\ndefine = Look up a word!\n" +
                   "\naww = See cute animals!\n" +
                   "\nfunny = I will show you a funny picture\n";
 

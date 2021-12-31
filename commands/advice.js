@@ -1,5 +1,7 @@
 import {prefix} from '../config';
 import fetch from 'node-fetch';
+import Discord from 'discord.js';
+import randomColor from '../tasks/setRandomColor';
 
 const advice = (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -11,7 +13,12 @@ const advice = (message) => {
         fetch("http://api.adviceslip.com/advice", {credentials:"include"})
         .then(response => response.json())
         .then((result) => {
-            Promise.resolve(message.reply(result.slip.advice));
+            let embed = new Discord.MessageEmbed()
+            .setColor(randomColor())
+            .setDescription(result.slip.advice)
+            .setTimestamp()
+            .setFooter(`Asked by ${message.author.username}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+            message.reply(embed)
         });
     }
 }

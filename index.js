@@ -32,6 +32,7 @@ import dndMeme from './commands/dndmeme';
 import chorus from './commands/chorus';
 import pokemon from './commands/pokemon';
 import { cat, dog, ferret, chinchilla } from './commands/pet';
+import dictionary from './commands/dictionary';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -73,6 +74,7 @@ client.on('message', async message => {
     dog(message);
     ferret(message);
     chinchilla(message);
+    dictionary(message);
     // playMusic(message, client);
 });
 
