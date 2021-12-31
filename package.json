@@ -8,7 +8,8 @@
     "url": "https://github.com/Oragoss/botSousa"
   },
   "scripts": {
-    "start": "babel-node --harmony index.js"
+    "babel-node": "babel-node --harmony index.js",
+    "start": "nodemon --exec npm run babel-node"
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
@@ -28,6 +29,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-latest": "^6.24.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "nodemon": "^2.0.15"
   }
 }

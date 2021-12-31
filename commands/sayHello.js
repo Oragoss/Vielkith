@@ -24,7 +24,7 @@ const sayHello = (message) => {
     switch(command) {
         case 'sayHello':
             // message.reply(Promise.resolve(randomGreeting()));
-            message.reply("Well, hello there!");
+            message.lineReply("Well, hello there!");
         break
     }
 }

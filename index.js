@@ -30,6 +30,7 @@ import funny from './commands/funny';
 import awful from './commands/awful'
 import dndMeme from './commands/dndmeme';
 import chorus from './commands/chorus';
+import pokemon from './commands/pokemon';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -64,6 +65,7 @@ client.on('message', async message => {
     funny(message);
     awful(message);
     dndMeme(message);
+    pokemon(message);
     // playMusic(message, client);
 });
 

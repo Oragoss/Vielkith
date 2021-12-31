@@ -4,10 +4,10 @@
 import {drake, triggerId} from '../config';
 
 const chorus = (message) => {
-    if(Math.floor(Math.random() * 100) >= 10 ) return;
+    if(Math.floor(Math.random() * 100) >= 5 ) return;
     if(message.author.username === triggerId) {
         for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
-            message.channel.send(`I agree, ${drake}. ${messagesForDrake[randomMessage()]}`);
+            message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);
         }
     }
 }
@@ -38,9 +38,10 @@ const messagesForDrake = [
     "Communism is preferable to death.",
     "History repeats itself, first as tragedy, second as farce.",
     "Workers of the world unite!",
+    "The Empire is the best Warhammer faction. No flaws what so ever.",
     "The bourgeoisie will pay for their crimes.",
     "Democracy is the road to Socialism",
-    "Social progress can be measured by the social position of the femal sex.",
+    "Social progress can be measured by the social position of the female sex.",
     "The more the division of labor and the application of machinery extend, the more does competition extend among the workers, the more do their wages shrink together.",
     "For the bureaucrat, the world is a mere object to be manipulated by him.",
     "Art is always and everywhere the secret confession, and at the same time the immortal movement of its time.",
