@@ -2,9 +2,10 @@ import {prefix} from '../config';
 import {drake, triggerId} from '../config';
 
 const chorus = (message) => {
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase(); //The first word in the command sentence
-    if(message.author.username === triggerId || ((message.author.id === message.guild.ownerID) && command === "drake")) {
+    // const args = message.content.slice(prefix.length).split(/ +/);
+    // const command = args.shift().toLowerCase(); //The first word in the command sentence
+    // || ((message.author.id === message.guild.ownerID) && command === "drake")
+    if(message.author.username === triggerId) {
         if(Math.floor(Math.random() * 100) >= 5 ) return;
         for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
             message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);

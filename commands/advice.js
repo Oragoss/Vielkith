@@ -2,6 +2,7 @@ import {prefix} from '../config';
 import fetch from 'node-fetch';
 import Discord from 'discord.js';
 import randomColor from '../tasks/setRandomColor';
+import getAuthorDisplayName from '../tasks/getAuthorDisplayName';
 
 const advice = (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -17,7 +18,7 @@ const advice = (message) => {
             .setColor(randomColor())
             .setDescription(result.slip.advice)
             .setTimestamp()
-            .setFooter(`Asked by ${message.author.username}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+            .setFooter(`Asked by ${getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
             message.reply(embed)
         });
     }

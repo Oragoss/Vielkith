@@ -34,6 +34,7 @@ import pokemon from './commands/pokemon';
 import { cat, dog, ferret, chinchilla } from './commands/pet';
 import dictionary from './commands/dictionary';
 import gainPokemonExp from './tasks/gainPokemonExp';
+import compliment from './commands/compliment';
 
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
@@ -76,6 +77,7 @@ client.on('message', async message => {
     ferret(message);
     chinchilla(message);
     dictionary(message);
+    compliment(message);
     // playMusic(message, client);
 });
 
