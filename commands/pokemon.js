@@ -1,4 +1,4 @@
-import {prefix} from '../config';
+import {prefix, pokemonDataPath} from '../config';
 import fetch from 'node-fetch';
 import capitalizeFirstLetter from '../tasks/capitalizeFirstLetter';
 import getAuthorDisplayName from '../tasks/getAuthorDisplayName';
@@ -26,8 +26,7 @@ const pokemon = (message) => {
 }
 
 const getPokemon = (message) => {
-    //TODO: Obviously make this not so stupidly hard coded
-    fs.readFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', 'utf8', function readFileCallback(err, data) {
+    fs.readFile(pokemonDataPath, 'utf8', function readFileCallback(err, data) {
         if (err){
             console.log(err);
         } else {
@@ -86,7 +85,7 @@ const addEntry = (message, user, pokemon) => {
         }
         pokemon.push(newPokemon);
         let json = JSON.stringify(pokemon);
-        fs.writeFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', json, 'utf8', function(err) {
+        fs.writeFile(pokemonDataPath, json, 'utf8', function(err) {
             if(err) {
                 return console.log(err);
             }
@@ -112,7 +111,7 @@ const addEntry = (message, user, pokemon) => {
 }
 
 const getPokemonByUser = (message, user) => {
-    fs.readFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', 'utf8', function readFileCallback(err, data) {
+    fs.readFile(pokemonDataPath, 'utf8', function readFileCallback(err, data) {
         if (err){
             console.log(err);
         } else {
@@ -151,7 +150,7 @@ const getPokemonByUser = (message, user) => {
 //TODO: Maybe finish?
 // const createEncounter = (message) => {
 //     let user = `${message.author.username}#${message.author.discriminator}`;
-//     const file = 'D:\\WebProjects\\botSousa\\data\\pokemon.json';
+//     const file = pokemonDataPath;
 //     fs.readFile(file, 'utf8', function readFileCallback(err, data) {
 //         if (err){
 //             console.log(err);
@@ -199,7 +198,7 @@ const getPokemonByUser = (message, user) => {
 
 //                             // pokemon.push(newPokemon);
 //                             // let json = JSON.stringify(pokemon);
-//                             // fs.writeFile('D:\\WebProjects\\botSousa\\data\\pokemon.json', json, 'utf8', function(err) {
+//                             // fs.writeFile(pokemonDataPath, json, 'utf8', function(err) {
 //                             //     if(err) {
 //                             //         return console.log(err);
 //                             //     }

@@ -1,8 +1,9 @@
+import { pokemonDataPath } from '../config.json';
 const fs = require('fs');
 
 const gainPokemonExp = (message) => {
     let user = `${message.author.username}#${message.author.discriminator}`;
-    const file = 'D:\\WebProjects\\botSousa\\data\\pokemon.json';
+    const file = pokemonDataPath;
     fs.readFile(file, 'utf8', function readFileCallback(err, data) {
         if (err){
             console.log(err);
