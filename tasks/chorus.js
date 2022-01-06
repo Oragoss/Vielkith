@@ -19,7 +19,7 @@ const randomMessage = () => {
 }
 
 const messagesForDrake = [
-    "We will seize the Capitalist's hentai for ourselves!",
+    "We will seize the capitalist's hentai for ourselves!",
     "Seize the memes of production!",
     "There can be no freedom without femboys!",
     "Seize the means of production!",
@@ -28,20 +28,20 @@ const messagesForDrake = [
     "Revolutions are the locomotives of history.",
     "The ruling ideas of each age have ever been the ideas of its ruling class.",
     "Society does not consist of individuals but the expresses the sum of interrelations, the relations within which these individuals stand.",
-    "The theory of Communism may be summed up in one sentence: Abolish all private property.",
-    "Down with Capitalism!",
+    "The Theory of Communism may be summed up in one sentence: Abolish all private property.",
+    "Down with capitalism!",
     "The human being is in the most literal sense a political animal, not merely a gregarious animal, but an animal which can individuate itself only in the midst of society.",
     "Landlords, like all other men, love to reap where they never sowed.",
     "In Communist Utopia, there will be cat-girls and femboys for all!",
-    "We will overthrow Capitalism!",
-    "In a Communist takeover, my job will be to catch mice and wear frilly skirts.",
+    "We will overthrow capitalism!",
+    "In a communist takeover, my job will be to catch mice and wear frilly skirts.",
     "Fascism can never take root in America, we *must* stomp it out at all costs!",
     "Communism is preferable to death.",
     "History repeats itself, first as tragedy, second as farce.",
     "Workers of the world unite!",
     "The Empire is the best Warhammer faction. No flaws what so ever.",
     "The bourgeoisie will pay for their crimes.",
-    "Democracy is the road to Socialism",
+    "Democracy is the road to socialism",
     "Social progress can be measured by the social position of the female sex.",
     "The more the division of labor and the application of machinery extend, the more does competition extend among the workers, the more do their wages shrink together.",
     "For the bureaucrat, the world is a mere object to be manipulated by him.",
@@ -57,7 +57,7 @@ const messagesForDrake = [
     "The production of too many useful things results in too many useless people.",
     "Reason has always existed, but not always in a reasonable form",
     "Capital is dead labor, which, vampire-like, lives only by sucking living labor, and lives the more, the more labor it sucks. Giggidy",
-    "All will come to know and love Communism."
+    "All will come to know and love communism; and femboys."
 ];
 
 export default chorus;

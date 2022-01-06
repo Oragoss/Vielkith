@@ -1,17 +1,8 @@
 import { prefix, token, owner } from './config.json';
 
 import Discord from 'discord.js';
+import randomColor from './tasks/setRandomColor';
 // import {Player} from 'discord-music-player';
-
-const client = new Discord.Client({
-    owner: owner,
-});
-
-// const player = new Player(client, {
-//     leaveOnEmpty: false, // This options are optional.
-// });
-// client.player = player;
-
 //Commands
 import mirrormirror from './commands/mirrormirror';
 import insult from './commands/insult';
@@ -36,6 +27,29 @@ import dictionary from './commands/dictionary';
 import gainPokemonExp from './tasks/gainPokemonExp';
 import compliment from './commands/compliment';
 
+const client = new Discord.Client({
+    owner: owner,
+});
+// const player = new Player(client, {
+//     leaveOnEmpty: false, // This options are optional.
+// });
+// client.player = player;
+
+let clientMessage;
+
+process.on('uncaughtException', async err => {
+    console.error('There was an uncaught error', err)
+    await client.destroy();
+    client.login(token);
+
+    let embed = new Discord.MessageEmbed()
+    .setColor(randomColor())
+    .setDescription(`Sorry, I seem to have experienced an error. Please try your command again.`)
+    .setTimestamp()
+    clientMessage.channel.send(embed)
+});
+
+
 client.once('reconnecting', () => {
     console.log('Reconnecting!');
 });
@@ -50,6 +64,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
+    clientMessage = message;
     //Tasks
     chorus(message);
     gainPokemonExp(message);

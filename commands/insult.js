@@ -1,22 +1,38 @@
 import {prefix} from '../config';
+import fetch from 'node-fetch';
+import Discord from 'discord.js';
+import randomColor from '../tasks/setRandomColor';
+import getAuthorDisplayName from '../tasks/getAuthorDisplayName';
+import capitalizeFirstLetter from '../tasks/capitalizeFirstLetter';
 
 const insult = (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
-    if (command === "insult")  {
-
-        if(!args[0]) {
-            Promise.resolve(message.reply(randomInsult()));
-        }
-        else {
-            const userList = message.mentions.users.map(user => {
-                return `${user.username}, ${randomInsult()}`;
-            });
-            Promise.resolve(message.channel.send(userList));
-        }
+    if (command === "insult") {
+        fetch("https://evilinsult.com/generate_insult.php?lang=en&type=json", {credentials:"include"})
+        .then(response => response.json())
+        .then((result) => {
+            message.delete();
+            const insult = capitalizeFirstLetter(result.insult.replace(/&quot;/g, '\\"'));
+            if(!args[0]) {
+                let embed = new Discord.MessageEmbed()
+                .setColor(randomColor())
+                .setDescription(`<@${message.author.id}> ${(Math.floor(Math.random() * 100) <= 5) ? randomInsult() : insult}`)
+                .setTimestamp()
+                .setFooter(`Asked by ${getAuthorDisplayName(message)}. Type !insult if you'd like one too!`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+                message.channel.send(embed)
+            //If member wants to compliment another member:
+            } else {
+                message.mentions.users.map(user => {
+                    message.channel.send(new Discord.MessageEmbed()
+                    .setColor(randomColor())
+                    .setDescription(`<@${user.id}> ${(Math.floor(Math.random() * 100) <= 5) ? randomInsult() : insult}`)
+                    .setTimestamp()
+                    .setFooter(`Sent by ${getAuthorDisplayName(message)}. Type !insult @${message.author.username} to insult them back!`, message.author.avatarURL()));
+                });
+            }
+        });
     }
 }
 

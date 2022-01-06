@@ -11,6 +11,7 @@ const advice = (message) => {
     const command = args.shift().toLowerCase(); //The first word in the command sentence
 
     if (command === "advice") {
+        message.delete();
         fetch("http://api.adviceslip.com/advice", {credentials:"include"})
         .then(response => response.json())
         .then((result) => {

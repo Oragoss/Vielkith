@@ -10,6 +10,7 @@ let description = `Enter ${prefix} before any command:` + "\n" +
                   "\nferret = See cute pictures of ferrets.\n" +
                   "\nchinchilla = See cute pictures of chinchillas.\n" +
                   "\ninsult <@Username> = Insult someone! But beware, this power is a double edged sword.\n" +
+                  "\ncompliment <@Username> = Compliment someone! Much better than an insult, don't you agree?\n" +
                   "\nclap sincere OR insincere = Let someone know you appreciate them, or tell them they are full of themselves.\n" +
                   "\nawful = Be shown an awful image.\n" +
                   "\ndndmeme = Be shown a dnd themed meme.\n" +
