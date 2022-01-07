@@ -26,6 +26,7 @@ import { cat, dog, ferret, chinchilla } from './commands/pet';
 import dictionary from './commands/dictionary';
 import gainPokemonExp from './tasks/gainPokemonExp';
 import compliment from './commands/compliment';
+import awesome from './commands/awesome';
 
 const client = new Discord.Client({
     owner: owner,
@@ -44,7 +45,7 @@ process.on('uncaughtException', async err => {
 
     let embed = new Discord.MessageEmbed()
     .setColor(randomColor())
-    .setDescription(`Sorry, I seem to have experienced an error. Please try your command again.`)
+    .setDescription(`A wild error appeared! Please try your command again.`)
     .setTimestamp()
     clientMessage.channel.send(embed)
 });
@@ -66,7 +67,7 @@ client.on('ready', () => {
 client.on('message', async message => {
     clientMessage = message;
     //Tasks
-    chorus(message);
+    // chorus(message);
     gainPokemonExp(message);
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -93,6 +94,7 @@ client.on('message', async message => {
     chinchilla(message);
     dictionary(message);
     compliment(message);
+    awesome(message);
     // playMusic(message, client);
 });
 
