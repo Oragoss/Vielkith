@@ -50,24 +50,10 @@ process.on('uncaughtException', async err => {
     clientMessage.channel.send(embed)
 });
 
-
-client.once('reconnecting', () => {
-    console.log('Reconnecting!');
-});
-
-client.once('disconnect', () => {
-    console.log('Disconnect!');
-});
-
-client.on('ready', () => {
-    console.log('Logged in as ' + client.user.username + '!');
-    client.user.setActivity('NotSpyingOnYou');
-});
-
-client.on('message', async message => {
+const commandsAndTasks = async (message, oldMessage = null) => {
     clientMessage = message;
     //Tasks
-    // chorus(message);
+    chorus(message);
     gainPokemonExp(message);
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -96,12 +82,34 @@ client.on('message', async message => {
     compliment(message);
     awesome(message);
     // playMusic(message, client);
+}
+
+client.once('reconnecting', () => {
+    console.log('Reconnecting!');
+});
+
+client.once('disconnect', () => {
+    console.log('Disconnect!');
+});
+
+client.on('ready', () => {
+    console.log('Logged in as ' + client.user.username + '!');
+    client.user.setActivity('NotSpyingOnYou');
+});
+
+client.on('message', async message => {
+    commandsAndTasks(message);
+});
+
+client.on('messageUpdate', async (oldMessage, newMessage) => {
+    commandsAndTasks(newMessage);
 });
 
 // Create an event listener for new guild members
-client.on('guildMemberAdd', (member) => {
-    const greeting = `Hello ${member.user.username}! I am the Sousa Bot! Type ${prefix}help for a list of neat commands.`
-    member.createDM(greeting);
-});
+// client.on('guildMemberAdd', (member) => {
+//     const greeting = `Hello ${member.user.username}! I am the Sousa Bot! Type ${prefix}help for a list of neat commands.`
+//     member.createDM(greeting);
+// });
+
 
 client.login(token)
