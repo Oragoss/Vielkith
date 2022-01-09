@@ -3,19 +3,9 @@ import { token, owner } from './config.json';
 import Discord from 'discord.js';
 import randomColor from './tasks/setRandomColor';
 //Commands
-import insult from './commands/insult';
-import serverInfo from './commands/serverInfo';
-import help from './commands/help';
-import join from './commands/join';
-import rank from './commands/rank';
-import coinFlip from './commands/coinFlip';
-import clap from './commands/clap';
-import changeRole from './commands/changeRole';
 import chorus from './tasks/chorus';
 import pokemon from './commands/pokemon';
-import dictionary from './commands/dictionary';
 import gainPokemonExp from './tasks/gainPokemonExp';
-import compliment from './commands/compliment';
 
 import App from './App';
 
