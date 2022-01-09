@@ -1,10 +1,8 @@
 import { token, owner } from './config.json';
-
 import Discord from 'discord.js';
-import randomColor from './tasks/setRandomColor';
+import RandomColor from './helpers/RandomColor';
 //Commands
 import chorus from './tasks/chorus';
-import pokemon from './commands/pokemon';
 import gainPokemonExp from './tasks/gainPokemonExp';
 
 import App from './App';
@@ -20,8 +18,10 @@ process.on('uncaughtException', async err => {
     await client.destroy();
     client.login(token);
 
+    let color = new RandomColor();
+
     let embed = new Discord.MessageEmbed()
-    .setColor(randomColor())
+    .setColor(color.randomColor())
     .setDescription(`A wild error appeared! Please try your command again.`)
     .setTimestamp()
     clientMessage.channel.send(embed)
@@ -49,7 +49,6 @@ const runCommandsAndTasks = async (message, oldMessage = null) => {
     // coinFlip(message);
     // clap(message);
     // changeRole(message);
-    // pokemon(message);
     // dictionary(message);
     // compliment(message);
 }

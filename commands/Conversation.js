@@ -47,7 +47,7 @@ export default class Conversation {
         }
     }
 
-    avatar() {    
+    avatar() {
         if(this.command === 'avatar') {
             //If member wants his own avatar
             if(!this.args[0]) {

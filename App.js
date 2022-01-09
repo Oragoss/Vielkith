@@ -3,6 +3,7 @@ import Reddit from './commands/Reddit';
 import Conversation from './commands/Conversation';
 import Chance from './commands/Chance';
 import Information from './commands/Information';
+import Pokemon from './commands/pokemon';
 
 export default class App {    
     constructor(message, oldMessage) {
@@ -16,6 +17,7 @@ export default class App {
         new Conversation(this.message);
         new Chance(this.message);
         new Information(this.message);
+        new Pokemon(this.message);
     }
 
     runTasks() {
