@@ -2,7 +2,6 @@ import { prefix, token, owner } from './config.json';
 
 import Discord from 'discord.js';
 import randomColor from './tasks/setRandomColor';
-// import {Player} from 'discord-music-player';
 //Commands
 import mirrormirror from './commands/mirrormirror';
 import insult from './commands/insult';
@@ -17,7 +16,6 @@ import advice from './commands/advice';
 import aww from './commands/aww';
 import changeRole from './commands/changeRole';
 import funny from './commands/funny';
-// import playMusic from './commands/playMusic';
 import awful from './commands/awful'
 import dndMeme from './commands/dndmeme';
 import chorus from './tasks/chorus';
@@ -28,13 +26,11 @@ import gainPokemonExp from './tasks/gainPokemonExp';
 import compliment from './commands/compliment';
 import awesome from './commands/awesome';
 
+import App from './App';
+
 const client = new Discord.Client({
     owner: owner,
 });
-// const player = new Player(client, {
-//     leaveOnEmpty: false, // This options are optional.
-// });
-// client.player = player;
 
 let clientMessage;
 
@@ -55,6 +51,9 @@ const commandsAndTasks = async (message, oldMessage = null) => {
     //Tasks
     chorus(message);
     gainPokemonExp(message);
+
+    let app = new App(message);
+    app.runCommands();
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     //Commands
@@ -70,7 +69,7 @@ const commandsAndTasks = async (message, oldMessage = null) => {
     advice(message);
     aww(message);
     changeRole(message);
-    funny(message);
+    // funny(message);
     awful(message);
     dndMeme(message);
     pokemon(message);
@@ -81,7 +80,6 @@ const commandsAndTasks = async (message, oldMessage = null) => {
     dictionary(message);
     compliment(message);
     awesome(message);
-    // playMusic(message, client);
 }
 
 client.once('reconnecting', () => {
@@ -104,12 +102,5 @@ client.on('message', async message => {
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     commandsAndTasks(newMessage);
 });
-
-// Create an event listener for new guild members
-// client.on('guildMemberAdd', (member) => {
-//     const greeting = `Hello ${member.user.username}! I am the Sousa Bot! Type ${prefix}help for a list of neat commands.`
-//     member.createDM(greeting);
-// });
-
 
 client.login(token)
