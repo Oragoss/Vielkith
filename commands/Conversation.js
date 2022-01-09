@@ -18,6 +18,7 @@ export default class Conversation {
         this.randomColor = new RandomColor();
         this.randomInsult = new RandomInsult();
 
+        this.sayHello();
         this.bucky();
         this.advice();
         this.avatar();
@@ -25,6 +26,70 @@ export default class Conversation {
         this.compliment();
         this.insult();
         this.clap();
+    }
+
+    sayHello() {
+        if (this.command === "hi" || this.command === "hello" || this.command === "greetings") {
+            const choice = [
+                "Catch! 🏈",
+                "Catch! ⚾",
+                "Hello, would you like a waffle? 🧇",
+                "Hello, would you like some pancakes? 🥞",
+                "Well, hello there!",
+                "Hi! Have a cookie 🍪.",
+                "Hi! Have a cupcake 🧁",
+                "Hello human. Want a beer? 🍺",
+                "Hello human, have a rock 🪨.",
+                "Go away, 'baiten.",
+                "Hi!",
+                "No.",
+                "One sec, making 🌿.",
+                "👋",
+                "🤚",
+                "Oh Hi!",
+                "Hello hello!",
+                "Greetings! 🌱",
+                "Don't bother me I'm busy. 🔇",
+                "Hi, what's your favorite color?",
+                "Hi, want to give me a command? You can type !help for a full list!",
+                "Good day!",
+                "Good day, or night? I'm not really sure, it's always dark in here...",
+                "Hello little one.",
+                "🖐",
+                "✋",
+                "🖖",
+                "✌",
+                "👆",
+                "☝",
+                "👍",
+                "✊",
+                "👊",
+                "🤛",
+                "🙌",
+                "🤜",
+                "👐",
+                "🤲",
+                "🤝",
+                "🙏",
+                "🙋",
+                "🙋‍♂️",
+                "🙋‍♀️",
+                "🙇",
+                "🙇‍♂️",
+                "🙇‍♀️"
+            ];
+            let randomInt = Math.floor(Math.random() * choice.length);
+            if(randomInt === 0) {
+                this.message.author.send("🏈");
+                this.message.reply(choice[randomInt]);
+            }
+            else if(randomInt === 1) {
+                this.message.reply(choice[randomInt]);
+                this.message.author.send("⚾");
+            }
+            else
+                this.message.reply(choice[randomInt]);
+        }
     }
 
     bucky() {

@@ -1,14 +1,22 @@
 import {prefix} from '../config';
 import {drake, triggerId} from '../config';
 
-const chorus = (message) => {
-    // const args = message.content.slice(prefix.length).split(/ +/);
-    // const command = args.shift().toLowerCase(); //The first word in the command sentence
-    // || ((message.author.id === message.guild.ownerID) && command === "drake")
-    if(message.author.username === triggerId) {
-        if(Math.floor(Math.random() * 100) >= 5 ) return;
-        for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
-            message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);
+export default class Chorus {
+    constructor(message) {
+        this.message = message; 
+        this.args = this.message.content.slice(prefix.length).split(/ +/);
+        this.command = this.args.shift().toLowerCase(); //The first word in the command sentence
+
+        this.chorus();
+    }
+
+    chorus() {
+        // || ((this.message.author.id === this.message.guild.ownerID) && this.command === "drake")
+        if(this.message.author.username === triggerId) {
+            if(Math.floor(Math.random() * 100) >= 5 ) return;
+            for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
+                this.message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);
+            }
         }
     }
 }
@@ -60,4 +68,4 @@ const messagesForDrake = [
     "All will come to know and love communism; and femboys."
 ];
 
-export default chorus;
+// export default chorus;

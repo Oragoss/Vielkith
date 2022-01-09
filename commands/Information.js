@@ -25,8 +25,8 @@ export default class Information {
                         "\nserver = Displays information about this server.\n" +
                         "\navatar <@Username> = Show a user's avatar. If no arguments, show your own avatar.\n" +
                         "\nflip = Flip a coin!\n" +
-                        "\ncat = See cute pictures of cats.\n" +
-                        "\ndog = See cute pictures of dogs.\n" +
+                        "\ncat = See cute pictures of cats. 🐈‍⬛\n" +
+                        "\ndog = See cute pictures of dogs. 🐕\n" +
                         "\nferret = See cute pictures of ferrets.\n" +
                         "\nchinchilla = See cute pictures of chinchillas.\n" +
                         "\ninsult <@Username> = Insult someone! But beware, this power is a double edged sword.\n" +
