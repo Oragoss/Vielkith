@@ -1,34 +1,82 @@
 import {prefix} from '../config';
 import splitUrlTitlesAndPhotos from '../tasks/splitUrlTitlesAndPhotos';
-import { randomFunnyEmoji } from '../tasks/randomEmoji';
+import RandomEmoji from '../helpers/RandomEmoji';
+import RandomLink from '../helpers/RandomLink';
 
 export default class Reddit {    
     constructor(message) {
-        this.message = message;
+        this.message = message; 
+        this.args = this.message.content.slice(prefix.length).split(/ +/);
+        this.command = this.args.shift().toLowerCase(); //The first word in the command sentence
+        this.randomLink = new RandomLink();
+        this.randomEmoji = new RandomEmoji();
+
+        this.funny();
+        this.aww();
+        this.awful();
+        this.awesome();
+        this.dndMeme();
+        this.cat();
+        this.dog();
+        this.ferret();
+        this.chinchilla();
     }
 
-    funny() {
-        const args =  this.message.content.slice(prefix.length).split(/ +/);
-        const command = args.shift().toLowerCase(); //The first word in the command sentence
-    
-        if (command === "funny" || command === "meme") {
+    funny() {    
+        if (this.command === "funny" || this.command === "meme") {
+            this.message.react(this.randomEmoji.randomFunnyEmoji());
+            splitUrlTitlesAndPhotos(this.randomLink.randomFunnyLink(), this.message);
+        }
+    }
+
+    aww() {
+        if (this.command === "aww") {
+            this.message.react(this.randomEmoji.randomAwwEmoji());
+            splitUrlTitlesAndPhotos(this.randomLink.randomAwwLink(), this.message);
+        }
+    }
+
+    awful() {
+        if (this.command === "awful") {
+            this.message.react(this.randomEmoji.randomAwfulEmoji());
+            splitUrlTitlesAndPhotos(this.randomLink.randomAwfulLink(), this.message);
+        }
+    }
+
+    awesome() {    
+        if (this.command === "awesome") {
+            splitUrlTitlesAndPhotos(this.randomLink.randomAwesomeLink(), this.message);
+        }
+    }
+
+    dndMeme() {    
+        if (this.command === "dndmeme") {
             this.message.react(randomFunnyEmoji());
-            splitUrlTitlesAndPhotos(this.randomFunnyLink(), this.message);
+            splitUrlTitlesAndPhotos("https://www.reddit.com/r/dndmemes.json", this.message);
+        }
+    }
+
+    cat() {    
+        if (this.command.toLowerCase() === "cat") {
+            splitUrlTitlesAndPhotos("https://www.reddit.com/r/cat.json", this.message);
+        }
+    }
+
+    dog() {
+        if (this.command.toLowerCase() === "dog") {
+            splitUrlTitlesAndPhotos("https://www.reddit.com/r/dog.json", this.message);
+        }
+    }
+
+    ferret() {    
+        if (this.command.toLowerCase() === "ferret") {
+            splitUrlTitlesAndPhotos("https://www.reddit.com/r/ferret.json", this.message);
         }
     }
     
-    randomFunnyLink() {
-        const funny = "https://www.reddit.com/r/funny.json";
-        const memes = "https://www.reddit.com/r/memes.json";
-        const dankmemes = "https://www.reddit.com/r/dankmemes.json";
-        const lotrmemes = "https://www.reddit.com/r/lotrmemes.json";
-        const prequelMemes = "https://www.reddit.com/r/PrequelMemes.json";
-        const politicalhumor = "https://www.reddit.com/r/PoliticalHumor.json";
-        const memeEconomy = "https://www.reddit.com/r/MemeEconomy.json";
-        const adviceAnimals = "https://www.reddit.com/r/AdviceAnimals.json";
-        const wallstreetBets = "https://www.reddit.com/r/wallstreetbets.json";
-        const choice = [wallstreetBets, adviceAnimals, funny, memes, dankmemes, lotrmemes, prequelMemes, politicalhumor, memeEconomy];
-        let randomInt = Math.floor(Math.random() * choice.length);
-        return choice[randomInt];
+    chinchilla() {    
+        if (this.command.toLowerCase() === "chinchilla") {
+            splitUrlTitlesAndPhotos("https://www.reddit.com/r/chinchilla.json", this.message);
+        }
     }
 }

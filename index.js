@@ -13,18 +13,12 @@ import rank from './commands/rank';
 import coinFlip from './commands/coinFlip';
 import clap from './commands/clap';
 import advice from './commands/advice';
-import aww from './commands/aww';
 import changeRole from './commands/changeRole';
-import funny from './commands/funny';
-import awful from './commands/awful'
-import dndMeme from './commands/dndmeme';
 import chorus from './tasks/chorus';
 import pokemon from './commands/pokemon';
-import { cat, dog, ferret, chinchilla } from './commands/pet';
 import dictionary from './commands/dictionary';
 import gainPokemonExp from './tasks/gainPokemonExp';
 import compliment from './commands/compliment';
-import awesome from './commands/awesome';
 
 import App from './App';
 
@@ -49,8 +43,8 @@ process.on('uncaughtException', async err => {
 const commandsAndTasks = async (message, oldMessage = null) => {
     clientMessage = message;
     //Tasks
-    chorus(message);
-    gainPokemonExp(message);
+    // chorus(message);
+    // gainPokemonExp(message);
 
     let app = new App(message);
     app.runCommands();
@@ -67,19 +61,10 @@ const commandsAndTasks = async (message, oldMessage = null) => {
     coinFlip(message);
     clap(message);
     advice(message);
-    aww(message);
     changeRole(message);
-    // funny(message);
-    awful(message);
-    dndMeme(message);
     pokemon(message);
-    cat(message);
-    dog(message);
-    ferret(message);
-    chinchilla(message);
     dictionary(message);
     compliment(message);
-    awesome(message);
 }
 
 client.once('reconnecting', () => {

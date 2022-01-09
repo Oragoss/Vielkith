@@ -6,7 +6,10 @@ export default class App {
     }
 
     runCommands() {
-        let reddit = new Reddit(this.message);
-        reddit.funny();
+        new Reddit(this.message);
+    }
+
+    runTasks() {
+        
     }
 }
