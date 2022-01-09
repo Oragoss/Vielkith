@@ -1,18 +1,15 @@
-import { prefix, token, owner } from './config.json';
+import { token, owner } from './config.json';
 
 import Discord from 'discord.js';
 import randomColor from './tasks/setRandomColor';
 //Commands
-import mirrormirror from './commands/mirrormirror';
 import insult from './commands/insult';
 import serverInfo from './commands/serverInfo';
 import help from './commands/help';
-import avatar from './commands/avatar';
 import join from './commands/join';
 import rank from './commands/rank';
 import coinFlip from './commands/coinFlip';
 import clap from './commands/clap';
-import advice from './commands/advice';
 import changeRole from './commands/changeRole';
 import chorus from './tasks/chorus';
 import pokemon from './commands/pokemon';
@@ -40,31 +37,31 @@ process.on('uncaughtException', async err => {
     clientMessage.channel.send(embed)
 });
 
-const commandsAndTasks = async (message, oldMessage = null) => {
+const runCommandsAndTasks = async (message, oldMessage = null) => {
     clientMessage = message;
     //Tasks
     // chorus(message);
     // gainPokemonExp(message);
 
-    let app = new App(message);
+    let app = new App(message, oldMessage);
+    app.runTasks();
     app.runCommands();
     
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    
+    
     //Commands
-    mirrormirror(message);
-    insult(message);
-    join(message);
-    serverInfo(message);
-    help(message);
-    avatar(message);
-    rank(message);
-    coinFlip(message);
-    clap(message);
-    advice(message);
-    changeRole(message);
-    pokemon(message);
-    dictionary(message);
-    compliment(message);
+    // mirrormirror(message);
+    // insult(message);
+    // join(message);
+    // serverInfo(message);
+    // help(message);
+    // rank(message);
+    // coinFlip(message);
+    // clap(message);
+    // changeRole(message);
+    // pokemon(message);
+    // dictionary(message);
+    // compliment(message);
 }
 
 client.once('reconnecting', () => {
@@ -81,11 +78,11 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    commandsAndTasks(message);
+    runCommandsAndTasks(message);
 });
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-    commandsAndTasks(newMessage);
+    runCommandsAndTasks(newMessage, oldMessage);
 });
 
 client.login(token)
