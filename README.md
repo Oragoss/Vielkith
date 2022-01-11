@@ -15,6 +15,6 @@ It has multiple commands and can be useful for sending bulk messages or cleaning
  - These are business logic classes that run in the background.
  ### package.json
  - Duh
- ### server
+ ### index
  - This is the root of the application that calls all of the business logic.
 
