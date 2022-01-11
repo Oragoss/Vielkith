@@ -29,15 +29,15 @@ export default class Conversation {
     }
 
     sayHello() {
-        if (this.command === "hi" || this.command === "hello" || this.command === "greetings") {
+        if (this.command === "hi" || this.command === "hello" || this.command === "greetings" || this.command === "wellmet") {
             const choice = [
                 "Catch! 🏈",
                 "Catch! ⚾",
-                "Hello, would you like a waffle? 🧇",
-                "Hello, would you like some pancakes? 🥞",
+                `Hello, <@${this.message.author.id}> would you like a waffle? 🧇`,
+                `Hello, <@${this.message.author.id}> would you like some pancakes? 🥞`,
                 "Well, hello there!",
-                "Hi! Have a cookie 🍪.",
-                "Hi! Have a cupcake 🧁",
+                `Hi! <@${this.message.author.id}> Have a cookie 🍪.`,
+                `Hi! <@${this.message.author.id}> Have a cupcake 🧁`,
                 "Hello human. Want a beer? 🍺",
                 "Hello human, have a rock 🪨.",
                 "Go away, 'baiten.",
@@ -50,10 +50,10 @@ export default class Conversation {
                 "Hello hello!",
                 "Greetings! 🌱",
                 "Don't bother me I'm busy. 🔇",
-                "Hi, what's your favorite color?",
-                "Hi, want to give me a command? You can type !help for a full list!",
+                `Hi, <@${this.message.author.id}> what's your favorite color?`,
+                `Hi, <@${this.message.author.id}> want to give me a command? You can type !help for a full list!`,
                 "Good day!",
-                "Good day, or night? I'm not really sure, it's always dark in here...",
+                "Good day, or night? I'm not really sure, it's always so dark in here...",
                 "Hello little one.",
                 "🖐",
                 "✋",
@@ -88,12 +88,46 @@ export default class Conversation {
                 this.message.author.send("⚾");
             }
             else
-                this.message.reply(choice[randomInt]);
+                this.message.channel.send(`${choice[randomInt]}`);
         }
     }
 
     bucky() {
-        //TODO: Put Bucky's phrases in here
+        if (this.command === "bucky"
+        || this.command === "butterybiscuit"
+        || this.command === "biscuit"
+        || this.command === "seabass"
+        || this.command === "bash"
+        || this.command === "sebastian"
+        || this.command === "lilman"
+        || this.command === "lilguy"
+        || this.command === "angelbiscuit"
+        || this.command === "sugarcrisp"
+        || this.command === "angelbear") {
+            const choice = [
+                'The wise and adorable Sebastian once said: "Don\'t put your hands in the diaper poop."',
+                'Bash once said: Colepizza? To this day, none know his meaning...',
+                'Open it?',
+                'Seabass once said: "Don\'t go for ride to the car wash!"',
+                'As was foretold, Bash once said: Watch Ms. Rachel?',
+                'THE MIGHTY SEBASTIAN WANTS PANCAKES',
+                'Bathtime fun.',
+                'Bathtime fun!',
+                'Don\'t sleep crib?!',
+                'Don\'t sleep pack n play?',
+                'Lil\' Man once asked: Cocomelon London Bridge?',
+                'Sugarcrisp once said: Mommy drive the car.',
+                'Sebastian once said: Daddy drive the car.',
+                'Foods are delicious.'
+            ];
+            let randomInt = Math.floor(Math.random() * choice.length);
+                let embed = new Discord.MessageEmbed()
+                .setColor(this.randomColor.randomColor())
+                .setDescription(`${choice[randomInt]}`)
+                .setTimestamp()
+                .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
+                this.message.channel.send(embed)
+        }
     }
 
     advice() {    

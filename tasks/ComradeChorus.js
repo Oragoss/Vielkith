@@ -1,29 +1,52 @@
-import {prefix} from '../config';
-import {drake, triggerId} from '../config';
+import {prefix, drake, triggerId} from '../config';
+import RandomEmoji from '../helpers/RandomEmoji';
+import Discord from 'discord.js';
+import RandomColor from '../helpers/RandomColor';
 
-export default class Chorus {
+export default class ComradeChorus {
     constructor(message) {
         this.message = message; 
         this.args = this.message.content.slice(prefix.length).split(/ +/);
         this.command = this.args.shift().toLowerCase(); //The first word in the command sentence
 
+        this.randomEmoji = new RandomEmoji();
+        this.randomColor = new RandomColor();
+
         this.chorus();
     }
 
     chorus() {
-        // || ((this.message.author.id === this.message.guild.ownerID) && this.command === "drake")
         if(this.message.author.username === triggerId) {
-            if(Math.floor(Math.random() * 100) >= 5 ) return;
-            for(let i = 0; i < (Math.floor(Math.random() * 5)); i++) {
-                this.message.channel.send(`I agree with you comrade ${drake}. ${messagesForDrake[randomMessage()]}`);
+            if(Math.floor(Math.random() * 100) >= 2.5 ) return;
+            const iterations = Math.floor(Math.random() * 4) + 1;
+            console.log(`\nHow many chorus iterations Drake triggered: ${iterations}`)
+            for(let i = 0; i < iterations; i++) {
+                this.message.react(this.randomEmoji.randomChorusEmoji())
+                let embed = new Discord.MessageEmbed()
+                .setColor(this.randomColor.randomColor())
+                .setDescription(`I agree with you comrade ${drake}. ${messagesForDrake[this.randomMessage()]}`)
+                this.message.channel.send(embed)
+            }
+        }
+        if(this.message.author.id === this.message.guild.ownerID && this.command === "drake") {
+            const iterations = Math.floor(Math.random() * 4) + 1;
+            console.log(`\nHow many chorus iterations you triggered: ${iterations}`)
+            for(let i = 0; i < iterations; i++) {
+                this.message.react(this.randomEmoji.randomChorusEmoji())
+                let embed = new Discord.MessageEmbed()
+                .setColor(this.randomColor.randomColor())
+                .setDescription(`I agree with you comrade ${drake}. ${messagesForDrake[this.randomMessage()]}`)
+                //TODO get icon in there
+                // .setFooter("", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnewcastlebeach.org%2Fimages%2Fanarchy-symbol-transparent-2.jpg&f=1&nofb=1")
+                this.message.channel.send(embed)
             }
         }
     }
-}
 
-const randomMessage = () => {
-    let randInt = Math.floor(Math.random() *  messagesForDrake.length)
-    return randInt;
+    randomMessage() {
+        let randInt = Math.floor(Math.random() *  messagesForDrake.length)
+        return randInt;
+    }
 }
 
 const messagesForDrake = [
@@ -65,7 +88,6 @@ const messagesForDrake = [
     "The production of too many useful things results in too many useless people.",
     "Reason has always existed, but not always in a reasonable form",
     "Capital is dead labor, which, vampire-like, lives only by sucking living labor, and lives the more, the more labor it sucks. Giggidy",
-    "All will come to know and love communism; and femboys."
+    "All will come to know and love communism; and femboys.",
+    "Nurgle is the best chaos god."
 ];
-
-// export default chorus;

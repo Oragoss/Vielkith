@@ -4,10 +4,8 @@ import Conversation from './commands/Conversation';
 import Chance from './commands/Chance';
 import Information from './commands/Information';
 import Pokemon from './commands/Pokemon';
-
-// import chorus from './tasks/chorus';
-import Chorus from './tasks/Chorus';
-import gainPokemonExp from './tasks/gainPokemonExp';
+import ComradeChorus from './tasks/ComradeChorus';
+import GainPokemonExp from './tasks/GainPokemonExp';
 
 export default class App {    
     constructor(message, oldMessage) {
@@ -25,8 +23,8 @@ export default class App {
     }
 
     runTasks() {
-        // chorus(this.message);
-        new Chorus(this.message);
-        gainPokemonExp(this.message);
+        if (this.message.author.bot) return;
+        new ComradeChorus(this.message);
+        new GainPokemonExp(this.message);
     }
 }
