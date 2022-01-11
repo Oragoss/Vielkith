@@ -7,7 +7,7 @@ It has multiple commands and can be useful for sending bulk messages or cleaning
 ## Project Structure
  ### commands
  - These are where user commands are processed, thing like !help have their business logic here.
- ### db
+ ### data
  - Stores a list of things like insults or user's stats.
  ### logs
  - Logs data (TODO: this)
