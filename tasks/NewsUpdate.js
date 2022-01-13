@@ -47,7 +47,6 @@ export default class NewsUpdate {
                         if(err) {
                             return console.log(err);
                         }
-                        console.log("Updated news config!")
                     });
                 });
             }
