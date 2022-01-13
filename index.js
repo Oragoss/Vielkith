@@ -8,6 +8,7 @@ const client = new Discord.Client({
 });
 
 let clientMessage;
+const app = new App();
 
 process.on('uncaughtException', async err => {
     console.error('There was an uncaught error', err)
@@ -25,9 +26,9 @@ process.on('uncaughtException', async err => {
 
 const runCommandsAndTasks = async (message, oldMessage = null) => {
     clientMessage = message;
-    let app = new App(message, oldMessage);
-    app.runTasks();
-    app.runCommands();
+    
+    app.runTasks(message, oldMessage);
+    app.runCommands(message, oldMessage);
 }
 
 client.once('reconnecting', () => {
@@ -41,6 +42,8 @@ client.once('disconnect', () => {
 client.on('ready', () => {
     console.log('Logged in as ' + client.user.username + '!');
     client.user.setActivity('NotSpyingOnYou');
+
+    app.runTasksOnStartup(client);
 });
 
 client.on('message', async message => {

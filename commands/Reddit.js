@@ -108,6 +108,6 @@ export default class Reddit {
                     this.message.delete();
                     Promise.resolve(this.message.channel.send(`${pics[rnd].title} \n ${pics[rnd].url}`));
                 });
-            }
+        }
     }
 }
