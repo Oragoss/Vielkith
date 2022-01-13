@@ -7,6 +7,7 @@ import Pokemon from './commands/Pokemon';
 import ComradeChorus from './tasks/ComradeChorus';
 import GainPokemonExp from './tasks/GainPokemonExp';
 import NewsUpdate from './tasks/NewsUpdate';
+import News from './commands/News';
 
 export default class App {    
     constructor() {
@@ -21,6 +22,9 @@ export default class App {
         new Chance(message);
         new Information(message);
         new Pokemon(message);
+
+        const news = new News();
+        news.getNews(message);
     }
 
     runTasks(message = null, oldMessage = null) {

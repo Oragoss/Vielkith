@@ -15,9 +15,9 @@ process.on('uncaughtException', async err => {
     await client.destroy();
     client.login(token);
 
-    let color = new RandomColor();
+    const color = new RandomColor();
 
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     .setColor(color.randomColor())
     .setDescription(`A wild error appeared! Please try your command again.`)
     .setTimestamp()

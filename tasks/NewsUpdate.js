@@ -1,9 +1,11 @@
-import { newsDataPath, newsApiChannel } from '../config';
+import { newsDataPath, newsApiChannel, newsApiKey } from '../config';
 import fetch from 'node-fetch';
 const fs = require('fs');
+import Discord from 'discord.js';
+import RandomColor from '../helpers/RandomColor';
 
 export default class NewsUpdate {
-    constructor(client) {
+    constructor() {
     }
 
     update(client) {
@@ -12,38 +14,40 @@ export default class NewsUpdate {
             if (err){
                 console.log(err);
             } else {
-                let newsConfigData = JSON.parse(data);
+                const newsConfigData = JSON.parse(data);
                 if(daysBetween(newsConfigData.lastUpdatedDate, Date.now()) < 1) return;
                 
-                fetch(`https://www.reddit.com/r/news.json`, {credentials:"include"})
+                fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsApiKey}`, {credentials:"include"})
                 .then(response => response.json())
                 .then((result) => {
-                    const newDate = new Date(Date.now()).toLocaleString()
+                    const newDate = new Date(Date.now()).toLocaleString();
                     console.log(`Sending a news article because it's been ${daysBetween(newsConfigData.lastUpdatedDate, new Date(Date.now()).toLocaleString())} day(s) since the last one has been sent.`);
                     newsConfigData.lastUpdatedDate = newDate;
 
-                    let news = [{
-                        title: "",
-                        url: ""
-                    }];
-                    
-                    for (let i = 0; i < result.data.children.length; i++) {
-                        let data = result.data.children[i].data;
-                        news.push({title: data.title, url: data.url});
-                    }
-            
-                    if(news.length <= 0) {
-                        return this.message.channel.send("Couldn't find any posts.");
-                    }
-
-                    let rnd = Math.floor(Math.random()*news.length);
-                    client.channels.cache.get(newsApiChannel).send(`${news[rnd].title} \n ${news[rnd].url}`);
+                    const rnd = Math.floor(Math.random()*result.articles.length);
+                    const article = result.articles[rnd];
+    
+                    const embed = new Discord.MessageEmbed()
+                    .setColor(new RandomColor().randomColor())
+                    .setURL(article.url || "No url available, sorry.")
+                    .setTitle(article.title || "This article doesn't have a title, sorry.")
+                    .setThumbnail(article.urlToImage)
+                    .setDescription(article.description || "This article doesn't have a description, sorry.")
+                    .addFields(
+                        {name: "Published at", value: `${new Date(article.publishedAt).toLocaleString()}`},
+                        {name: "Source", value: `${article.source.name}`},
+                        {name: "Author", value: `${article.author}`}
+                    )
+                    .setTimestamp()
+                    .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news topic. Right now it can only handle one word topics.`)
+                    client.channels.cache.get(newsApiChannel).send(embed);
 
                     let json = JSON.stringify(newsConfigData);
                     fs.writeFile(file, json, 'utf8', function(err) {
                         if(err) {
                             return console.log(err);
                         }
+                        console.log("Updated news config!")
                     });
                 });
             }
