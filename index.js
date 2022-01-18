@@ -30,6 +30,7 @@ const runCommandsAndTasks = async (message, oldMessage = null) => {
     app.runTasks(message, oldMessage);
     app.runCommands(message, oldMessage);
     app.runTasksOnStartup(client);
+    await app.runHangman(message);
 }
 
 client.once('reconnecting', () => {

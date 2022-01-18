@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
+    "discord-hangman": "^1.2.2",
     "discord-music-player": "^8.3.1",
     "discord.js": "^12.5.3",
     "discord.js-commando": "^0.9.0",

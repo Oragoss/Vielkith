@@ -8,6 +8,7 @@ import ComradeChorus from './tasks/ComradeChorus';
 import GainPokemonExp from './tasks/GainPokemonExp';
 import NewsUpdate from './tasks/NewsUpdate';
 import News from './commands/News';
+import Hangman from './commands/Hangman';
 
 export default class App {    
     constructor() {
@@ -29,8 +30,13 @@ export default class App {
 
     runTasks(message = null, oldMessage = null) {
         if (message.author.bot) return;
-        new ComradeChorus(message);
+        // new ComTurnradeChorus(message);
         new GainPokemonExp(message);
+    }
+
+    async runHangman(message = null) {
+        const hm = new Hangman(message);
+        await hm.playHangman();
     }
 
     runTasksOnStartup(client) {

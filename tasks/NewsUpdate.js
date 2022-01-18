@@ -20,7 +20,7 @@ export default class NewsUpdate {
                 fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsApiKey}`, {credentials:"include"})
                 .then(response => response.json())
                 .then((result) => {
-                    const newDate = new Date(Date.now()).toLocaleString();
+                    const newDate = new Date(Date.now()).toDateString();
                     console.log(`Sending a news article because it's been ${daysBetween(newsConfigData.lastUpdatedDate, new Date(Date.now()).toLocaleString())} day(s) since the last one has been sent.`);
                     newsConfigData.lastUpdatedDate = newDate;
 
