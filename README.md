@@ -1,8 +1,7 @@
 # botSousa
 Discord General Purpose Chat Bot used for a private server.
 
-It has multiple commands and can be useful for sending bulk messages or cleaning up older messages.
-
+Fun for general managing of your server. Has lots of cool features!
 
 ## Project Structure
  ### commands
