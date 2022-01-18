@@ -22,7 +22,7 @@ export default class Hangman {
                             gameMessage = `Congratulations, you found the word! ${data.selector.username}`;
                             gameColor = "#00CC00";
                         } else {
-                            gameMessage = 'Congratulations you found the word!';
+                            gameMessage = `Congratulations you found ${data.game.word}!`;
                             gameColor = "#00CC00";
                         }
                     }
