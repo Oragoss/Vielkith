@@ -9,13 +9,14 @@ export default class GainPokemonExp {
     }
 
     gainPokemonExp(message) {
-        const user = `${message.author.username}#${message.author.discriminator}`;
+        const user = `${message.author.username}#${message.author.discriminator}_${message.guild.id}`;
         const file = pokemonDataPath;
         fs.readFile(file, 'utf8', function readFileCallback(err, data) {
             if (err){
                 console.log(err);
             } else {
                 let pokemon = JSON.parse(data);
+                console.log(user);
                 const expGain = message.content.length * 0.085;  //how much exp a user's pokemon gets per character
                 const expLimit = 12  //This is multiplied by the pokemon's current level to determine how much exp is needed before a level up
                 if(pokemon.length != 0) {

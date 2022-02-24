@@ -29,7 +29,7 @@ export default class Conversation {
     }
 
     sayHello() {
-        if (this.command === "hi" || this.command === "hello" || this.command === "greetings" || this.command === "wellmet") {
+        if (this.command === "hi" || this.command === "hello" || this.command === "greetings" || this.command === "wellmet" || this.command === "howdy") {
             const choice = [
                 "Catch! 🏈",
                 "Catch! ⚾",
@@ -225,7 +225,7 @@ export default class Conversation {
                     this.message.mentions.users.map(user => {
                         this.message.channel.send(new Discord.MessageEmbed()
                         .setColor(this.randomColor.randomColor())
-                        .setDescription(`<@${user.id}> ${(Math.floor(Math.random() * 100) <= 5) ? randomInsult() : insult}`)
+                        .setDescription(`<@${user.id}> ${(Math.floor(Math.random() * 100) <= 5) ? this.randomInsult.randomInsult() : insult}`)
                         .setTimestamp()
                         .setFooter(`Sent by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}. Type !insult @${this.message.author.username} to insult them back!`, this.message.author.avatarURL()));
                     });

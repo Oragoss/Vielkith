@@ -43,7 +43,7 @@ client.once('disconnect', () => {
 
 client.on('ready', () => {
     console.log('Logged in as ' + client.user.username + '!');
-    client.user.setActivity('NotSpyingOnYou');
+    client.user.setActivity('Leveling Pokemon');
 
     app.runTasksOnStartup(client);
 });

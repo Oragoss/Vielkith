@@ -37,6 +37,8 @@ export default class Information {
                         "\nadvice = Conjure sage wisdom from the internet.\n" +
                         "\ndefine = Look up a word!\n" +
                         "\naww = See cute animals!\n" +
+                        "\nhangman = Play hangman! You have to click on the ledger emoji in order to play.\n" +
+                        "\npokemon = Get your own pokemon! The more you chat the more it will level up!\n" +
                         "\nfunny or meme = I will show you a funny picture\n";
 
         if (this.command === "help") {
@@ -44,7 +46,8 @@ export default class Information {
                         .setAuthor('List of Commands:')
                         .setDescription(description);
 
-            Promise.resolve(this.message.channel.send(embed));
+            this.message.delete();
+            this.message.channel.send(embed)
         }
     }
 

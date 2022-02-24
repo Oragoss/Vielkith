@@ -3,12 +3,13 @@ import Reddit from './commands/Reddit';
 import Conversation from './commands/Conversation';
 import Chance from './commands/Chance';
 import Information from './commands/Information';
-import Pokemon from './commands/Pokemon';
 import ComradeChorus from './tasks/ComradeChorus';
 import GainPokemonExp from './tasks/GainPokemonExp';
 import NewsUpdate from './tasks/NewsUpdate';
 import News from './commands/News';
 import Hangman from './commands/Hangman';
+import Game from './commands/Game';
+import pokemon from './commands/Pokemon';
 
 export default class App {    
     constructor() {
@@ -22,15 +23,20 @@ export default class App {
         new Conversation(message);
         new Chance(message);
         new Information(message);
-        new Pokemon(message);
-
+        pokemon(message);
+     
         const news = new News();
-        news.getNews(message);
+        news.getNews(message); //maybe turn this back on
+    }
+
+    async runAsyncCommands(message = null, oldMessage = null) {
+        const game = new Game();
+        await game.rockPaperScissors(message);
     }
 
     runTasks(message = null, oldMessage = null) {
         if (message.author.bot) return;
-        // new ComTurnradeChorus(message);
+        new ComradeChorus(message);
         new GainPokemonExp(message);
     }
 

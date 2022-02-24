@@ -94,7 +94,7 @@ export default class Reddit {
                     }];
                     
                     for (let i = 0; i < result.data.children.length; i++) {
-                        let data = result.data.children[i].data;                
+                        let data = result.data.children[i].data;
                         if((data.thumbnail.split('.').pop() === 'jpg') || (data.thumbnail.split('.').pop() === 'png') || (data.thumbnail.split('.').pop() === 'gif')) {
                             pics.push({title: data.title, url: data.url});
                         }
