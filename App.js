@@ -10,6 +10,7 @@ import News from './commands/News';
 import Hangman from './commands/Hangman';
 import Game from './commands/Game';
 import pokemon from './commands/Pokemon';
+import Poll from './commands/Poll';
 
 export default class App {    
     constructor() {
@@ -30,8 +31,11 @@ export default class App {
     }
 
     async runAsyncCommands(message = null, oldMessage = null) {
-        const game = new Game();
-        await game.rockPaperScissors(message);
+        // const game = new Game();
+        // await game.rockPaperScissors(message);
+
+        const poll = new Poll();
+        await poll.startPoll(message);
     }
 
     runTasks(message = null, oldMessage = null) {

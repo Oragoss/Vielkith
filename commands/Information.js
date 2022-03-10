@@ -39,6 +39,7 @@ export default class Information {
                         "\naww = See cute animals!\n" +
                         "\nhangman = Play hangman! You have to click on the ledger emoji in order to play.\n" +
                         "\npokemon = Get your own pokemon! The more you chat the more it will level up!\n" +
+                        "\npoll = Enter !poll <channel> <Title> <Poll Description>. E.g. \"!poll #polls Game Do you want to play hangman?\"\n" +
                         "\nfunny or meme = I will show you a funny picture\n";
 
         if (this.command === "help") {

@@ -21,14 +21,14 @@ export default class News {
 
                 let embed = new Discord.MessageEmbed()
                 .setColor(this.randomColor.randomColor())
-                .setURL(article.url || "No url available, sorry.")
-                .setTitle(article.title || "This article doesn't have a title, sorry.")
-                .setThumbnail(article.urlToImage)
-                .setDescription(article.description || "This article doesn't have a description, sorry.")
+                .setURL(removeTags(article.url) || "No url available, sorry.")
+                .setTitle(removeTags(article.title) || "This article doesn't have a title, sorry.")
+                .setThumbnail(removeTags(article.urlToImage))
+                .setDescription(removeTags(article.description) || "This article doesn't have a description, sorry.")
                 .addFields(
-                    {name: "Published at", value: `${new Date(article.publishedAt).toLocaleString()}`},
-                    {name: "Source", value: `${article.source.name}`},
-                    {name: "Author", value: `${article.author}`}
+                    {name: "Published at", value: `${new Date(removeTags(article.publishedAt)).toLocaleString()}`},
+                    {name: "Source", value: `${removeTags(article.source.name)}`},
+                    {name: "Author", value: `${removeTags(article.author)}` || 'Unkown'}
                 )
                 .setTimestamp()
                 .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news topic. Right now it can only handle one word topics.`)
@@ -37,3 +37,11 @@ export default class News {
         } 
     };
 }
+
+const removeTags = (str) => {
+    if ((str===null) || (str===''))
+    return null;
+    else
+    str = str.toString();
+    return str.replace( /(<([^>]+)>)/ig, '');
+ }
