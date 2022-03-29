@@ -11,6 +11,7 @@ import Hangman from './commands/Hangman';
 import Game from './commands/Game';
 import pokemon from './commands/Pokemon';
 import Poll from './commands/Poll';
+import AdviceUpdate from './tasks/AdviceUpdate';
 
 export default class App {    
     constructor() {
@@ -52,5 +53,8 @@ export default class App {
     runTasksOnStartup(client) {
         const newsUpdate = new NewsUpdate(client);
         newsUpdate.update(client);
+
+        const adviceUpdate = new AdviceUpdate(client);
+        adviceUpdate.update(client);
     }
 }
