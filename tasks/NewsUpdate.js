@@ -29,17 +29,17 @@ export default class NewsUpdate {
     
                     const embed = new Discord.MessageEmbed()
                     .setColor(new RandomColor().randomColor())
-                    .setURL(article.url || "No url available, sorry.")
-                    .setTitle(article.title || "This article doesn't have a title, sorry.")
-                    .setThumbnail(article.urlToImage)
-                    .setDescription(article.description || "This article doesn't have a description, sorry.")
+                    .setURL(removeTags(article.url) || "No url available, sorry.")
+                    .setTitle(removeTags(article.title) || "This article doesn't have a title, sorry.")
+                    .setThumbnail(removeTags(article.urlToImage))
+                    .setDescription(removeTags(article.description) || "This article doesn't have a description, sorry.")
                     .addFields(
-                        {name: "Published at", value: `${new Date(article.publishedAt).toLocaleString()}`},
-                        {name: "Source", value: `${article.source.name}`},
-                        {name: "Author", value: `${article.author}`}
+                        {name: "Published at", value: `${new Date(removeTags(article.publishedAt)).toLocaleString()}`},
+                        {name: "Source", value: `${removeTags(article.source.name)}`},
+                        {name: "Author", value: `${removeTags(article.author) === null ? 'Unkown': removeTags(article.author)}`}
                     )
                     .setTimestamp()
-                    .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news topic. Right now it can only handle one word topics.`)
+                    .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news <topic>. Right now I can only handle one word topics.`)
                     client.channels.cache.get(newsApiChannel).send(embed);
 
                     let json = JSON.stringify(newsConfigData);
@@ -63,4 +63,13 @@ function treatAsUTC(date) {
 function daysBetween(startDate, endDate) {
     var millisecondsPerDay = 24 * 60 * 60 * 1000;
     return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
+}
+
+//TODO: Abstract this
+const removeTags = (str) => {
+    if ((str===null) || (str===''))
+    return null;
+    else
+    str = str.toString();
+    return str.replace( /(<([^>]+)>)/ig, '');
 }

@@ -25,7 +25,6 @@ export default class AdviceUpdate {
                     .setColor(new RandomColor().randomColor())
                     .setTitle("Advice of the day.")
                     .setDescription(result.slip.advice)
-                    .setTimestamp();
                     client.channels.cache.get(newsApiChannel).send(embed);
                 });
             }

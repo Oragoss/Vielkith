@@ -19,6 +19,7 @@ export default class News {
                 const rnd = Math.floor(Math.random()*result.articles.length);
                 const article = result.articles[rnd];
 
+                //TODO: Abstract this
                 let embed = new Discord.MessageEmbed()
                 .setColor(this.randomColor.randomColor())
                 .setURL(removeTags(article.url) || "No url available, sorry.")
@@ -28,20 +29,21 @@ export default class News {
                 .addFields(
                     {name: "Published at", value: `${new Date(removeTags(article.publishedAt)).toLocaleString()}`},
                     {name: "Source", value: `${removeTags(article.source.name)}`},
-                    {name: "Author", value: `${removeTags(article.author)}` || 'Unkown'}
+                    {name: "Author", value: `${removeTags(article.author) === null ? 'Unkown': removeTags(article.author)}`}
                 )
                 .setTimestamp()
-                .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news topic. Right now it can only handle one word topics.`)
+                .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news <topic>. Right now I can only handle one word topics.`)
                 message.channel.send(embed)
             });
         } 
     };
 }
 
+//TODO: Abstract this
 const removeTags = (str) => {
     if ((str===null) || (str===''))
     return null;
     else
     str = str.toString();
     return str.replace( /(<([^>]+)>)/ig, '');
- }
+}

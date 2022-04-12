@@ -16,15 +16,15 @@ export default class GainPokemonExp {
                 console.log(err);
             } else {
                 let pokemon = JSON.parse(data);
-                console.log(user);
                 const expGain = message.content.length * 0.085;  //how much exp a user's pokemon gets per character
                 const expLimit = 12  //This is multiplied by the pokemon's current level to determine how much exp is needed before a level up
                 if(pokemon.length != 0) {
                     for(let i = 0; i < pokemon.length; i++) {
                         if (user === pokemon[i].user) {
                             pokemon[i].exp += expGain;
-                            console.log("\n" + `${pokemon[i].user}'s ` + pokemon[i].name + " current xp: " + pokemon[i].exp)
-                            console.log(pokemon[i].name + " : " + (expGain) + " gained!")
+                            console.log("\n" + `${pokemon[i].user}'s ` + pokemon[i].name + " current xp: " + pokemon[i].exp);
+                            console.log(pokemon[i].name + " : " + (expGain) + " gained!");
+                            console.log("\n" + `Message was: \n${message.content}\n=======================`);
                             if(pokemon[i].exp >= (pokemon[i].level * expLimit))
                             {
                                 pokemon[i] = levelup(pokemon[i]);
