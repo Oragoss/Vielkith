@@ -40,7 +40,9 @@ export default class Information {
                         "\nhangman = Play hangman! You have to click on the ledger emoji in order to play.\n" +
                         "\npokemon = Get your own pokemon! The more you chat the more it will level up!\n" +
                         "\npoll = Enter !poll <channel> <Title> <Poll Description>. E.g. \"!poll #polls Game Do you want to play hangman?\"\n" +
-                        "\nfunny or meme = I will show you a funny picture\n";
+                        "\nfunny or meme = I will show you a funny picture\n" +
+                        "\nchuck or chucknorris = I will preach about our LORD and savior, Chuck Norris!\n" + 
+                        "\njoke or tellmeajoke = I will tell you a joke at random!\n";
 
         if (this.command === "help") {
             let embed = new Discord.MessageEmbed()
