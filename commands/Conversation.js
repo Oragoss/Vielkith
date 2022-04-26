@@ -5,6 +5,7 @@ import Discord from 'discord.js';
 import RandomColor from '../helpers/RandomColor';
 import GetAuthorDisplayName from '../helpers/GetAuthorDisplayName';
 import RandomInsult from '../helpers/RandomInsult';
+import RemoveTags from '../helpers/RemoveTags';
 import { lavendria } from '../config';
 
 export default class Conversation {
@@ -17,6 +18,7 @@ export default class Conversation {
         this.getAuthorDisplayName = new GetAuthorDisplayName();
         this.randomColor = new RandomColor();
         this.randomInsult = new RandomInsult();
+        this.removeTags = new RemoveTags();
 
         this.sayHello();
         this.bucky();
@@ -26,6 +28,57 @@ export default class Conversation {
         this.compliment();
         this.insult();
         this.clap();
+        this.chuckNorris();
+        this.joke();
+    }
+    
+    joke() {
+        if (this.command === "joke" || this.command === "tellmeajoke") {
+            this.message.delete();
+            let randomInt = Math.floor(Math.random() * 50);
+            if(randomInt === 25) {
+                fetch("https://api.chucknorris.io/jokes/random", {credentials:"include"})
+                .then(response => response.json())
+                .then((result) => {
+                    let embed = new Discord.MessageEmbed()
+                    .setColor(this.randomColor.randomColor())
+                    .setThumbnail(this.removeTags.removeTags(result.icon_url))
+                    .setDescription(this.capitalizeFirstLetter.capitalizeFirstLetter(result.value))
+                    .setTimestamp()
+                    .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+                    this.message.reply(embed)
+                });
+            } else {
+                fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=racist,sexist", {credentials:"include"})
+                .then(response => response.json())
+                .then((result) => {
+                    let embed = new Discord.MessageEmbed()
+                    .setColor(this.randomColor.randomColor())
+                    .setTitle(this.capitalizeFirstLetter.capitalizeFirstLetter(result.setup))
+                    .setDescription(`\n...\n...\n...\n...\n${this.capitalizeFirstLetter.capitalizeFirstLetter(result.delivery)}`)
+                    .setTimestamp()
+                    .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+                    this.message.reply(embed)
+                });
+            }
+        }
+    }
+
+    chuckNorris() {
+        if (this.command === "chuck" || this.command === "chucknorris") {
+            this.message.delete();
+            fetch("https://api.chucknorris.io/jokes/random", {credentials:"include"})
+            .then(response => response.json())
+            .then((result) => {
+                let embed = new Discord.MessageEmbed()
+                .setColor(this.randomColor.randomColor())
+                .setThumbnail(this.removeTags.removeTags(result.icon_url))
+                .setDescription(this.capitalizeFirstLetter.capitalizeFirstLetter(result.value))
+                .setTimestamp()
+                .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+                this.message.reply(embed)
+            });
+        }
     }
 
     sayHello() {
