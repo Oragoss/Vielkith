@@ -22,9 +22,10 @@ export default class GainPokemonExp {
                     for(let i = 0; i < pokemon.length; i++) {
                         if (user === pokemon[i].user) {
                             pokemon[i].exp += expGain;
-                            console.log("\n" + `${pokemon[i].user}'s ` + pokemon[i].name + " current xp: " + pokemon[i].exp);
+                            console.log("\n********************************************************************************");
+                            console.log(`${pokemon[i].user}'s ` + pokemon[i].name + " current xp: " + pokemon[i].exp);
                             console.log(pokemon[i].name + " : " + (expGain) + " gained!");
-                            console.log("\n" + `Message was: \n${message.content}\n=======================`);
+                            console.log("\n" + `Message was: \n${message.content}\n********************************************************************************`);
                             if(pokemon[i].exp >= (pokemon[i].level * expLimit))
                             {
                                 pokemon[i] = levelup(pokemon[i]);
