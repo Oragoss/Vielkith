@@ -20,12 +20,14 @@ const roll = (message) => {
                 score.push(d6);
             }
 
-            if(args[0] === "variant" || args[0] === "2d6"){
+            if(args[0] === "variant" || args[0] === "2d6") {
                 rollArray.push(score[0] + score[1] + 6)
                 console.log(score)
             } else {
                 const sortScore = score.sort().filter((_,i) => i)   //This works by sorting and then creating a new array from the items where indeces are truthy(anything but 0)
-                rollArray.push(sortScore[0] + sortScore[1] + sortScore[2]);
+                let newScore = sortScore[0] + sortScore[1] + sortScore[2];
+                if(newScore < 8) newScore === 8;
+                rollArray.push(newScore);
             }
         }
 

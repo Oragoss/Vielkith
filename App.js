@@ -12,6 +12,7 @@ import Game from './commands/Game';
 import pokemon from './commands/Pokemon';
 import Poll from './commands/Poll';
 import AdviceUpdate from './tasks/AdviceUpdate';
+import roll from './commands/Roll'
 
 export default class App {    
     constructor() {
@@ -26,6 +27,7 @@ export default class App {
         new Chance(message);
         new Information(message);
         pokemon(message);
+        roll(message);
      
         const news = new News();
         news.getNews(message); //maybe turn this back on

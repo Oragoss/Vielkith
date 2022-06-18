@@ -3,6 +3,8 @@ import Discord from 'discord.js';
 import RandomColor from './helpers/RandomColor';
 import App from './App';
 
+//https://discordjs.guide/popular-topics/intents.html#enabling-intents
+//TODO: upgrade to use indents
 const client = new Discord.Client({
     owner: owner,
 });

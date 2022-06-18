@@ -12,15 +12,11 @@
     "start": "nodemon --exec npm run babel-node"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.5.3",
     "discord-hangman": "^1.2.2",
-    "discord-music-player": "^8.3.1",
     "discord.js": "^12.5.3",
     "discord.js-commando": "^0.9.0",
     "harmony": "0.0.1",
-    "node-fetch": "^2.6.1",
-    "yt-search": "^2.10.2",
-    "ytdl-core-discord": "^1.3.1"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

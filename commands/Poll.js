@@ -30,5 +30,25 @@ export default class Poll {
 
             message.delete();
         }
+        //TODO: have user set up their own custom polls
+        if(command === "optionspoll") {
+            let pollChannel = message.mentions.channels.first();
+            let pollDescription = args.slice(2).join(' ');
+
+            let embedPoll = new Discord.MessageEmbed()
+            .setTitle(this.capitalizeFirstLetter.capitalizeFirstLetter(args[1]) || 'Poll')
+            .setDescription(this.capitalizeFirstLetter.capitalizeFirstLetter(pollDescription))
+            .setColor(this.randomColor.randomColor())
+            .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(message)}`, message.author.avatarURL());
+
+            let messageEmbed = await pollChannel.send(embedPoll);
+            await messageEmbed.react('1️⃣');
+            await messageEmbed.react('2️⃣');
+            await messageEmbed.react('3️⃣');
+            await messageEmbed.react('4️⃣');
+            await messageEmbed.react('5️⃣');
+
+            message.delete();
+        }
     }
 }
