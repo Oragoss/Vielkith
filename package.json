@@ -1,6 +1,6 @@
 {
-  "name": "sousabot",
-  "version": "1.1.1",
+  "name": "vielkith",
+  "version": "2.1.1",
   "description": "A simple chat bot for my personal server.",
   "main": "index.js",
   "author": {
