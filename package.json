@@ -1,6 +1,6 @@
 {
   "name": "vielkith",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "A simple chat bot for my personal servers.",
   "main": "index.js",
   "author": {
