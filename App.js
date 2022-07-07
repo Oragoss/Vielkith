@@ -12,7 +12,8 @@ import Game from './commands/Game';
 import pokemon from './commands/Pokemon';
 import Poll from './commands/Poll';
 import AdviceUpdate from './tasks/AdviceUpdate';
-import roll from './commands/Roll'
+import roll from './commands/DnD/Roll';
+import castRandomCantrip from './commands/DnD/castRandomCantrip';
 
 export default class App {    
     constructor() {
@@ -28,6 +29,7 @@ export default class App {
         new Information(message);
         pokemon(message);
         roll(message);
+        castRandomCantrip(message);
      
         const news = new News();
         news.getNews(message); //maybe turn this back on

@@ -23,6 +23,7 @@ export default class Information {
     help() {
         let description = `Enter ${prefix} before any command:` + "\n" +
                         "\nserver = Displays information about this server.\n" +
+                        "\npoll #channel-name <Title> <Description> = Create a poll with a thumbs up or thumbs down option.\n" +
                         "\navatar <@Username> = Show a user's avatar. If no arguments, show your own avatar.\n" +
                         "\nflip = Flip a coin!\n" +
                         "\ncat = See cute pictures of cats. 🐈‍⬛\n" +
@@ -34,6 +35,7 @@ export default class Information {
                         "\nclap sincere OR insincere = Let someone know you appreciate them, or tell them they are full of themselves.\n" +
                         "\nawful = Be shown an awful image.\n" +
                         "\ndndmeme = Be shown a dnd themed meme.\n" +
+                        "\rollstats or rollstats variant or rollstats 2d6 = Roll your own stat array for you dnd character!\n";
                         "\nadvice = Conjure sage wisdom from the internet.\n" +
                         "\ndefine = Look up a word!\n" +
                         "\naww = See cute animals!\n" +

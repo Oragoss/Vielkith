@@ -1,4 +1,4 @@
-import { newsDataPath, newsApiChannel } from '../config';
+import { newsDataPath, newsApiChannel, athelornChannel } from '../config';
 import fetch from 'node-fetch';
 const fs = require('fs');
 import Discord from 'discord.js';
@@ -26,6 +26,8 @@ export default class AdviceUpdate {
                     .setTitle("Advice of the day.")
                     .setDescription(result.slip.advice)
                     client.channels.cache.get(newsApiChannel).send(embed);
+                    client.channels.cache.get(athelornChannel).send(embed);
+                    console.log(athelornChannel)
                 });
             }
         });

@@ -1,11 +1,11 @@
 {
   "name": "vielkith",
   "version": "2.1.1",
-  "description": "A simple chat bot for my personal server.",
+  "description": "A simple chat bot for my personal servers.",
   "main": "index.js",
   "author": {
     "name": "Jon Sousa",
-    "url": "https://github.com/Oragoss/botSousa"
+    "url": "https://github.com/Oragoss/vielkith"
   },
   "scripts": {
     "babel-node": "babel-node --harmony index.js",

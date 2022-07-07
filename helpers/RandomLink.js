@@ -46,8 +46,9 @@ export default class RandomLink {
         const politicalhumor = "https://www.reddit.com/r/PoliticalHumor.json";
         const memeEconomy = "https://www.reddit.com/r/MemeEconomy.json";
         const adviceAnimals = "https://www.reddit.com/r/AdviceAnimals.json";
-        const wallstreetBets = "https://www.reddit.com/r/wallstreetbets.json";
-        const choice = [wallstreetBets, adviceAnimals, funny, memes, dankmemes, lotrmemes, prequelMemes, politicalhumor, memeEconomy];
+        const meIrlgbt = "https://www.reddit.com/r/me_irlgbt.json";
+        const merIrl = "https://www.reddit.com/r/me_irl.json";
+        const choice = [merIrl, meIrlgbt, adviceAnimals, funny, memes, dankmemes, lotrmemes, prequelMemes, politicalhumor, memeEconomy];
         let randomInt = Math.floor(Math.random() * choice.length);
         return choice[randomInt];
     }

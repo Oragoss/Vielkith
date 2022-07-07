@@ -1,12 +1,12 @@
-import {prefix, playerStatsDataPath} from '../config';
-import GetAuthorDisplayName from '../helpers/GetAuthorDisplayName';
-import RandomColor from '../helpers/RandomColor';
+import {prefix, playerStatsDataPath} from '../../config';
+import GetAuthorDisplayName from '../../helpers/GetAuthorDisplayName';
+import RandomColor from '../../helpers/RandomColor';
 import Discord from 'discord.js';
 
 const roll = (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
-    if (command === "rollstats") {
+    if (command === "rollstats" || command === "roll") {
         let numberOfDie = (args[0] === "variant" || args[0] === "2d6") ? 2 : 4;
         const rollArray = [];
         const numberOfStatRolls = 6;
