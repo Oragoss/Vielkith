@@ -83,12 +83,21 @@ export default class Information {
                     this.message.reply(`Sorry, but I am unable to look up that word. Perhaps check your spelling?`);
                 } else {                
                     let definitions = [];
+                    let count = 0;
                     for(let i = 0; i < result[0].meanings.length; i++) {
                         for (let x = 0; x < result[0].meanings[i].definitions.length; x++) {
-                            definitions.push(
-                                {name:"Definition", value: this.capitalizeFirstLetter.capitalizeFirstLetter(result[0].meanings[i].definitions[x].definition)},
-                                {name:"Synonyms", value: JSON.stringify(result[0].meanings[i].definitions[x].synonyms)}
-                            )
+                            count++
+                            const synonyms = result[0].meanings[i].definitions[x].synonyms.length > 0 ? {name:"Synonyms", value: JSON.stringify(result[0].meanings[i].definitions[x].synonyms)} : null
+                            if(synonyms) {
+                                definitions.push(
+                                    {name:`Definition ${count}`, value: `${this.capitalizeFirstLetter.capitalizeFirstLetter(result[0].meanings[i].definitions[x].definition)}
+                                        \nSynonyms: ${JSON.stringify(result[0].meanings[i].definitions[x].synonyms)}`}
+                                )
+                            } else {
+                                definitions.push(
+                                    {name:`Definition ${count}`, value: this.capitalizeFirstLetter.capitalizeFirstLetter(result[0].meanings[i].definitions[x].definition)}
+                                )
+                            }
                         }
                     }
                     let embed = new Discord.MessageEmbed()
