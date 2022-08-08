@@ -1,4 +1,4 @@
-import {prefix, drake, triggerId, comradeChorus} from '../config';
+import {prefix, drake, triggerId, comradeChorusMessages} from '../config';
 import RandomEmoji from '../helpers/RandomEmoji';
 import Discord from 'discord.js';
 import RandomColor from '../helpers/RandomColor';
@@ -24,7 +24,7 @@ export default class ComradeChorus {
                 this.message.react(this.randomEmoji.randomChorusEmoji())
                 let embed = new Discord.MessageEmbed()
                 .setColor(this.randomColor.randomColor())
-                .setDescription(`I agree with you comrade ${drake}. ${comradeChorus[this.randomMessage()]}`)
+                .setDescription(`I agree with you comrade ${drake}. ${comradeChorusMessages[this.randomMessage()]}`)
                 this.message.channel.send(embed)
             }
         }
@@ -35,7 +35,7 @@ export default class ComradeChorus {
                 this.message.react(this.randomEmoji.randomChorusEmoji())
                 let embed = new Discord.MessageEmbed()
                 .setColor(this.randomColor.randomColor())
-                .setDescription(`I agree with you comrade ${drake}. ${comradeChorus[this.randomMessage()]}`)
+                .setDescription(`I agree with you comrade ${drake}. ${comradeChorusMessages[this.randomMessage()]}`)
                 //TODO get icon in there
                 // .setFooter("", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnewcastlebeach.org%2Fimages%2Fanarchy-symbol-transparent-2.jpg&f=1&nofb=1")
                 this.message.channel.send(embed)
@@ -44,7 +44,7 @@ export default class ComradeChorus {
     }
 
     randomMessage() {
-        let randInt = Math.floor(Math.random() *  comradeChorus.length)
+        let randInt = Math.floor(Math.random() *  comradeChorusMessages.length)
         return randInt;
     }
 }
