@@ -6,7 +6,7 @@ import Discord from 'discord.js';
 const roll = (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase(); //The first word in the command sentence
-    if (command === "rollstats" || command === "roll") {
+    if (command === "rollstats") {
         let numberOfDie = (args[0] === "variant" || args[0] === "2d6") ? 2 : 4;
         const rollArray = [];
         const numberOfStatRolls = 6;
@@ -46,6 +46,9 @@ const roll = (message) => {
             .setTimestamp()
             .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
         Promise.resolve(message.channel.send(embed));
+    }
+    if(command === "roll") {
+        Promise.resolve(message.channel.send("Sorry, I need to work on this command. I promise it's coming soon!"));
     }
 }
 

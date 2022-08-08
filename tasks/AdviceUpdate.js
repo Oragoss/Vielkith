@@ -1,4 +1,4 @@
-import { newsDataPath, newsApiChannel, athelornChannel } from '../config';
+import { newsDataPath, adviceChannels } from '../config';
 import fetch from 'node-fetch';
 const fs = require('fs');
 import Discord from 'discord.js';
@@ -8,7 +8,6 @@ export default class AdviceUpdate {
     constructor() {
     }
 
-    //TODO: Make the news path and api functionality more generic between this class and the NewsUpdate class
     update(client) {
         const file = newsDataPath;
         fs.readFile(file, 'utf8', function readFileCallback(err, data) {
@@ -24,10 +23,11 @@ export default class AdviceUpdate {
                     const embed = new Discord.MessageEmbed()
                     .setColor(new RandomColor().randomColor())
                     .setTitle("Advice of the day.")
-                    .setDescription(result.slip.advice)
-                    client.channels.cache.get(newsApiChannel).send(embed);
-                    client.channels.cache.get(athelornChannel).send(embed);
-                    console.log(athelornChannel)
+                    .setDescription(result.slip.advice);
+                    
+                    for(let i = 0; i < adviceChannels.length; i++) {
+                        client.channels.cache.get(adviceChannels[i]).send(embed);
+                    }
                 });
             }
         });

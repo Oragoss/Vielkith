@@ -11,27 +11,29 @@ const castRandomCantrip = (message) => {
         const color = new RandomColor();
         const displayName = new GetAuthorDisplayName();
 
-        if(choice === "options") {
+        if(choice === "options" || choice === "option") {
             let embed = new Discord.MessageEmbed()
             .setColor(color.randomColor())
-            .setTitle(`If you have some powdered rock, put the school of magic as the first argument. If you don't, the powder will be wasted. This will still consume your action.`)
-            .setDescription("For example, \"!cast evocation\"")
+            .setTitle(`If you have some powdered rock, put the the color of the powder as the first argument. If you don't, the powder will be wasted. This will still consume your action and your powder.\nSpell attack Modifier is +5. \nSpell DC is 15.`)
+            .setDescription("For example, \"!cast red\"")
             .addFields(
-                {name:"1", value: "Abjuration"},
-                {name:"2", value: "Illusion"},
-                {name:"3", value: "Enchantment"},
-                {name:"4", value: "Divination"},
-                {name:"5", value: "Evocation"},
-                {name:"6", value: "Transmutation"},
-                {name:"7", value: "Necromancy"},
-                {name:"8", value: "Conjuration"}
+                {name:"1", value: "Green"},
+                {name:"2", value: "Blue"},
+                {name:"3", value: "Pink"},
+                {name:"4", value: "Cyan"},
+                {name:"5", value: "Red"},
+                {name:"6", value: "Yellow"},
+                {name:"7", value: "Purple"},
+                {name:"8", value: "Orange"}
             )
             .setTimestamp()
             .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
             Promise.resolve(message.channel.send(embed));
             return;
         }
-        const magicSchoolOptions = ["abjuration", "illusion", "enchantment", "divination", "evocation", "transmutation", "necromancy", "conjuration"];
+        //TODO: maybe try to put these back in
+        // const magicSchoolOptions = ["abjuration", "illusion", "enchantment", "divination", "evocation", "transmutation", "necromancy", "conjuration"]; 
+        const magicColorOptions = ["green", "blue", "pink", "cyan", "red", "yellow", "purple", "orange"];
         const genericSpellAttackModifier = 5;
         
         const abjurationSpells = [
@@ -547,7 +549,7 @@ const castRandomCantrip = (message) => {
         let randomInt = 0;
         let fieldArray;
         switch(choice) {
-            case magicSchoolOptions[0]:
+            case magicColorOptions[0]:
                 randomInt = Math.floor(Math.random() * abjurationSpells.length)
                 if(abjurationSpells[randomInt].attack) {
                     fieldArray = [
@@ -571,7 +573,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[1]:
+            case magicColorOptions[1]:
                 randomInt = Math.floor(Math.random() * illusionSpells.length)
                 if(illusionSpells[randomInt].attack) {
                     fieldArray = [
@@ -595,7 +597,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[2]:
+            case magicColorOptions[2]:
                 randomInt = Math.floor(Math.random() * enchantmentSpells.length)
                 if(enchantmentSpells[randomInt].attack) {
                     fieldArray = [
@@ -619,7 +621,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[3]:
+            case magicColorOptions[3]:
                 randomInt = Math.floor(Math.random() * divinationSpells.length)
                 if(divinationSpells[randomInt].attack) {
                     fieldArray = [
@@ -637,13 +639,13 @@ const castRandomCantrip = (message) => {
                     ]
                 }
                 embed = new Discord.MessageEmbed()
-                .setColor("#1FBFE5")
+                .setColor("#00FFFF")
                 .setTitle(divinationSpells[randomInt].name)
                 .addFields(fieldArray)
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[4]:
+            case magicColorOptions[4]:
                 randomInt = Math.floor(Math.random() * evocationSpells.length)
                 if(evocationSpells[randomInt].attack) {
                     fieldArray = [
@@ -667,7 +669,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[5]:
+            case magicColorOptions[5]:
                 randomInt = Math.floor(Math.random() * transmutationSpells.length)
                 if(transmutationSpells[randomInt].attack) {
                     fieldArray = [
@@ -691,7 +693,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[6]:
+            case magicColorOptions[6]:
                 randomInt = Math.floor(Math.random() * necromancySpells.length)
                 if(necromancySpells[randomInt].attack) {
                     fieldArray = [
@@ -715,7 +717,7 @@ const castRandomCantrip = (message) => {
                 .setTimestamp()
                 .setFooter(`Asked by ${displayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))
                 break;
-            case magicSchoolOptions[7]:
+            case magicColorOptions[7]:
                 randomInt = Math.floor(Math.random() * conjurationSpells.length)
                 if(conjurationSpells[randomInt].attack) {
                     fieldArray = [
