@@ -17,18 +17,12 @@ export default class AdviceUpdate {
                 const newsConfigData = JSON.parse(data);
                 if(daysBetween(newsConfigData.lastUpdatedDate, Date.now()) < 1) return;
                 
-                fetch("http://api.adviceslip.com/advice", {credentials:"include"})
-                .then(response => response.json())
-                .then((result) => {
-                    const embed = new Discord.MessageEmbed()
-                    .setColor(new RandomColor().randomColor())
-                    .setTitle("Advice of the day.")
-                    .setDescription(result.slip.advice);
-                    
-                    for(let i = 0; i < adviceChannels.length; i++) {
-                        client.channels.cache.get(adviceChannels[i]).send(embed);
-                    }
-                });
+                const rnd = Math.floor(Math.random()*2);
+                if(rnd !== 0) {
+                    goodAdvice(client);
+                } else {
+                  badAdvice(client);
+                }
             }
         });
     };
@@ -43,4 +37,45 @@ function treatAsUTC(date) {
 function daysBetween(startDate, endDate) {
     var millisecondsPerDay = 24 * 60 * 60 * 1000;
     return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
+}
+
+function badAdvice (client) {
+    fetch("https://www.reddit.com/r/ShittyLifeProTips.json", {credentials:"include"})
+    .then(response => response.json())
+    .then((result) => {
+        const data = result.data.children;
+        const filteredData = data.filter(datum => datum.data.thumbnail === "self" && datum.data.title.length <= 256);
+
+        const rnd = Math.floor(Math.random()*filteredData.length)
+        const choice = {title: filteredData[rnd].data.title, description: filteredData[rnd].data.selfText};
+
+        const color = new RandomColor();
+
+        let embed = new Discord.MessageEmbed()
+            .setColor(color.randomColor())
+            .setTitle(choice.title || "Couldn't find any titles, sorry.")
+            .setDescription(choice.description || "")
+            .setTimestamp();
+        
+        console.log("Sending Bad Advice!");
+        for(let i = 0; i < adviceChannels.length; i++) {
+            client.channels.cache.get(adviceChannels[i]).send(embed);
+        }
+    });
+}
+
+function goodAdvice(client) {
+    fetch("http://api.adviceslip.com/advice", {credentials:"include"})
+    .then(response => response.json())
+    .then((result) => {
+        const embed = new Discord.MessageEmbed()
+        .setColor(new RandomColor().randomColor())
+        .setTitle("Advice of the day.")
+        .setDescription(result.slip.advice);
+        
+        console.log("Sending Good Advice!");
+        for(let i = 0; i < adviceChannels.length; i++) {
+            client.channels.cache.get(adviceChannels[i]).send(embed);
+        }
+    });
 }

@@ -1,4 +1,4 @@
-import { newsDataPath, adviceChannels, newsApiKey } from '../config';
+import { newsDataPath, newsChannels, newsApiKey } from '../config';
 import fetch from 'node-fetch';
 const fs = require('fs');
 import Discord from 'discord.js';
@@ -40,10 +40,11 @@ export default class NewsUpdate {
                     )
                     .setTimestamp()
                     .setFooter(`If you want more news, you can type !news. If you want more news about a specific topic you can type !news <topic>. Right now I can only handle one word topics.`)
-                    for(let i = 0; i < adviceChannels.length; i++) {
-                        client.channels.cache.get(adviceChannels[i]).send(embed);
+                    for(let i = 0; i < newsChannels.length; i++) {
+                        client.channels.cache.get(newsChannels[i]).send(embed);
                     }
 
+                    //TODO: Abstract the update functionality into it's own file.
                     let json = JSON.stringify(newsConfigData);
                     fs.writeFile(file, json, 'utf8', function(err) {
                         if(err) {

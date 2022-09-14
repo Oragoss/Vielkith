@@ -46,7 +46,7 @@ client.once('disconnect', () => {
 
 client.on('ready', () => {
     console.log('Logged in as ' + client.user.username + '!');
-    client.user.setActivity('Leveling Pokemon');
+    client.user.setActivity('Pokemon');
 
     app.runTasksOnStartup(client);
 });

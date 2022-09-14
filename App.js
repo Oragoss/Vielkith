@@ -32,7 +32,7 @@ export default class App {
         castRandomCantrip(message);
      
         const news = new News();
-        news.getNews(message); //maybe turn this back on
+        news.getNews(message);
     }
 
     async runAsyncCommands(message = null, oldMessage = null) {
