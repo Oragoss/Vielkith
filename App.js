@@ -14,6 +14,8 @@ import Poll from './commands/Poll';
 import AdviceUpdate from './tasks/AdviceUpdate';
 import roll from './commands/DnD/Roll';
 import castRandomCantrip from './commands/DnD/castRandomCantrip';
+import generateRolePlayPrompt from './tasks/DnD/generateRolePlayPrompt';
+import respondToRolePlayPrompt from './commands/DnD/respondToRolePlayPrompt'
 
 export default class App {    
     constructor() {
@@ -30,6 +32,7 @@ export default class App {
         pokemon(message);
         roll(message);
         castRandomCantrip(message);
+        respondToRolePlayPrompt(message);
      
         const news = new News();
         news.getNews(message);
@@ -54,11 +57,13 @@ export default class App {
         await hm.playHangman();
     }
 
-    runTasksOnStartup(client) {
+    async runTasksOnStartup(client) {
         const newsUpdate = new NewsUpdate(client);
         newsUpdate.update(client);
 
         const adviceUpdate = new AdviceUpdate(client);
         adviceUpdate.update(client);
+
+        generateRolePlayPrompt(client);
     }
 }

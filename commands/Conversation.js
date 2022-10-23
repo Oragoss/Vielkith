@@ -30,6 +30,20 @@ export default class Conversation {
         this.clap();
         this.chuckNorris();
         this.joke();
+        this.gender();
+    }
+
+    gender() {
+        const pronouns = ["I am a chocolate bar, I go by Her/She", "I am a samuri, I go by They/Them", "I am a donkey, I go by He/Haw", "Doom"];
+        const randomInt = Math.floor(Math.random() * pronouns.length);
+        if (this.command === "gender") {
+            let embed = new Discord.MessageEmbed()
+            .setColor(this.randomColor.randomColor())
+            .setDescription(pronouns[randomInt])
+            .setTimestamp()
+            .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
+            this.message.reply(embed)
+        }
     }
     
     joke() {

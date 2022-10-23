@@ -18,6 +18,7 @@ export default class AdviceUpdate {
                 if(daysBetween(newsConfigData.lastUpdatedDate, Date.now()) < 1) return;
                 
                 const rnd = Math.floor(Math.random()*2);
+                console.log(`The random number was ${rnd}`);
                 if(rnd !== 0) {
                     goodAdvice(client);
                 } else {
@@ -71,7 +72,7 @@ function goodAdvice(client) {
         const embed = new Discord.MessageEmbed()
         .setColor(new RandomColor().randomColor())
         .setTitle("Advice of the day.")
-        .setDescription(result.slip.advice);
+        .setDescription(`${result.slip.advice}`);
         
         console.log("Sending Good Advice!");
         for(let i = 0; i < adviceChannels.length; i++) {

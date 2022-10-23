@@ -24,6 +24,8 @@
     "babel-loader": "^7.1.5",
     "babel-preset-latest": "^6.24.1",
     "babel-register": "^6.26.0",
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
     "nodemon": "^2.0.15"
   }
 }

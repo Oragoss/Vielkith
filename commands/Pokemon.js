@@ -35,8 +35,10 @@ const getPokemon = (message) => {
             let pokemon = JSON.parse(data);
             let user = `${message.author.username}#${message.author.discriminator}_${message.guild.id}`;
             let hasPokemon = false;
-            if(pokemon.length <= 0)
+            if(pokemon.length <= 0) {
                 addEntry(message, user, pokemon);
+                return;
+            }
             for(let i = 0; i < pokemon.length; i++) {
                 if (user === pokemon[i].user) {
                     hasPokemon = true;
@@ -60,6 +62,7 @@ const getPokemon = (message) => {
             }          
             if(!hasPokemon) {
                 addEntry(message, user, pokemon);
+                return;
             }
         }
     });

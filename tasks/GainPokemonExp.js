@@ -47,7 +47,7 @@ export default class GainPokemonExp {
 }
 
 const levelup = (pokemon) => {
-    const maxValue = 5;
+    const maxValue = 3;
     pokemon.level++
     pokemon.exp = 0;
     pokemon.hp += (Math.floor(Math.random() * maxValue));

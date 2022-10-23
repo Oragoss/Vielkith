@@ -65,7 +65,7 @@ export default class Information {
                 return this.message.channel.send(`Server name: ${this.message.guild.name}\nTotal members: ${this.message.guild.memberCount}`);
             }
             if(this.args[0] === 'help'){
-                return this.message.channel.send(`Type '$help' for help using this bot.`);
+                return this.message.channel.send(`Type '${prefix}help' for help using this bot.`);
             }
             else {
                return this.message.reply(`Arguments for ${prefix}server:\n --info`);

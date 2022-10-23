@@ -12,19 +12,19 @@ const client = new Discord.Client({
 let clientMessage;
 const app = new App();
 
-process.on('uncaughtException', async err => {
-    console.error('There was an uncaught error', err)
-    await client.destroy();
-    client.login(token);
+// process.on('uncaughtException', async err => {
+//     console.error('There was an uncaught error', err)
+//     await client.destroy();
+//     client.login(token);
 
-    const color = new RandomColor();
+//     const color = new RandomColor();
 
-    const embed = new Discord.MessageEmbed()
-    .setColor(color.randomColor())
-    .setDescription(`A wild error appeared! Please try your command again.`)
-    .setTimestamp()
-    clientMessage.channel.send(embed)
-});
+//     const embed = new Discord.MessageEmbed()
+//     .setColor(color.randomColor())
+//     .setDescription(`A wild error appeared! Please try your command again.`)
+//     .setTimestamp()
+//     clientMessage.channel.send(embed)
+// });
 
 const runCommandsAndTasks = async (message, oldMessage = null) => {
     clientMessage = message;
