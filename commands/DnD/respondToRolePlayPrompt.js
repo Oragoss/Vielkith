@@ -14,22 +14,22 @@ const respondToRolePlayPrompt = (message) => {
             } else {
                 const rolePlayData = JSON.parse(data);
                 
-                // const itemSelection = fs.readFileSync(itemDropsPath, 'utf8', function(err, itemData) {
-                //     return JSON.parse(itemData);
-                // });
-                // console.log("item data:")
-                // console.log(itemSelection)
-                
                 //TODO: Make this testable??
                 const activeScenario = rolePlayData.scenarios.filter(x => x.active === true);
-                const randomAmount = Math.floor(Math.random() * activeScenario[0].amountMax);
+                if(activeScenario.length <= 0)
+                    return;
+
+                let randomAmount = (Math.floor(Math.random() * activeScenario[0].amountMax));
+                if(randomAmount === 0)
+                    randomAmount = 1;
+
                 const randomRewardInt = Math.floor(Math.random() * activeScenario[0].reward.length);
     
                 const embed = new Discord.MessageEmbed()
-                .setColor(new RandomColor().randomColor())
+                .setColor("#28A745")
                 .setTitle(`Accepted`)
                 .addFields(
-                    {name: `You receive ${randomAmount}:`, value: `${activeScenario[0].reward[randomRewardInt]}`}
+                    {name: `${activeScenario[0].acceptMessage}`, value: `You receive ${randomAmount} ${activeScenario[0].reward[randomRewardInt]}`}
                 );
     
                 for(let i = 0; i < rolePlayingChannels.length; i++) {
@@ -44,7 +44,7 @@ const respondToRolePlayPrompt = (message) => {
                 }
 
                 //TODO: Abstract the update functionality into it's own file.
-                let json = JSON.stringify(rolePlayData);
+                let json = JSON.stringify(rolePlayData, null, 2);
                 fs.writeFile(file, json, 'utf8', function(err) {
                     if(err) {
                         return console.log(err);
@@ -60,21 +60,15 @@ const respondToRolePlayPrompt = (message) => {
             } else {
                 const rolePlayData = JSON.parse(data);
                 
-                // const itemSelection = fs.readFileSync(itemDropsPath, 'utf8', function(err, itemData) {
-                //     return JSON.parse(itemData);
-                // });
-                // console.log("item data:")
-                // console.log(itemSelection)
-                
                 //TODO: Make this testable??
                 const activeScenario = rolePlayData.scenarios.filter(x => x.active === true);
-                const randomAmount = Math.floor(Math.random() * activeScenario[0].amountMax);
-                const randomRewardInt = Math.floor(Math.random() * activeScenario[0].reward.length);
+                if(activeScenario.length <= 0)
+                    return;
     
                 const embed = new Discord.MessageEmbed()
-                .setColor(new RandomColor().randomColor())
+                .setColor("#FF315A")
                 .setTitle(`Rejected`)
-                .setDescription(`You must move on...`);
+                .setDescription(activeScenario[0].rejectMessage || `You move on...`);
     
                 for(let i = 0; i < rolePlayingChannels.length; i++) {
                     Promise.resolve(message.channel.send(embed))
@@ -88,7 +82,7 @@ const respondToRolePlayPrompt = (message) => {
                 }
 
                 //TODO: Abstract the update functionality into it's own file.
-                let json = JSON.stringify(rolePlayData);
+                let json = JSON.stringify(rolePlayData, null, 2);
                 fs.writeFile(file, json, 'utf8', function(err) {
                     if(err) {
                         return console.log(err);

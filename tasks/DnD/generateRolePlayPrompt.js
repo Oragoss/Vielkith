@@ -46,7 +46,7 @@ const generateRolePlayPrompt = (client) => {
 
             //TODO: Abstract the update functionality into it's own file.
             rolePlayData.scenarios[randomInt].active = true;
-            let json = JSON.stringify(rolePlayData);
+            let json = JSON.stringify(rolePlayData, null, 2);
             fs.writeFile(file, json, 'utf8', function(err) {
                 if(err) {
                     return console.log(err);
