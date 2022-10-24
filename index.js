@@ -14,6 +14,7 @@ const app = new App();
 
 //WHOOOOOOOOOOOOOO!
 //ANOTHER ONE
+//MOAAAAAAAAAAAR
 
 process.on('uncaughtException', async err => {
     console.error('There was an uncaught error', err)
