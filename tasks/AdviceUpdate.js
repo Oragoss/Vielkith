@@ -21,8 +21,10 @@ export default class AdviceUpdate {
                 console.log(`The random number was ${rnd}`);
                 if(rnd !== 0) {
                     goodAdvice(client);
+                    return;
                 } else {
                   badAdvice(client);
+                  return;
                 }
             }
         });

@@ -49,7 +49,7 @@ export default class App {
     runTasks(message = null, oldMessage = null) {
         if (message.author.bot) return;
         new ComradeChorus(message);
-        // new GainPokemonExp(message);
+        new GainPokemonExp(message);
     }
 
     async runHangman(message = null) {
