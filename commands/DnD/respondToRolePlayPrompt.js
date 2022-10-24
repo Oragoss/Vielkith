@@ -64,6 +64,7 @@ const respondToRolePlayPrompt = (message) => {
                 const rolePlayData = JSON.parse(data);
     
                 const getAuthorDisplayName = new GetAuthorDisplayName();
+                
                 //TODO: Make this testable??
                 const activeScenario = rolePlayData.scenarios.filter(x => x.active === true);
                 if(activeScenario.length <= 0)
