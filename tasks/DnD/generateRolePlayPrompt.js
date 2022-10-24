@@ -21,6 +21,8 @@ const generateRolePlayPrompt = (client) => {
                 rolePlayData.scenarios[i].active = false;
             }
             
+            //Some change
+            
             //TODO: Make this testable??
             const randomInt = Math.floor(Math.random() * rolePlayData.scenarios.length);
             const randomScenario = rolePlayData.scenarios[randomInt];
