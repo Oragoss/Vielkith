@@ -26,6 +26,8 @@ const respondToRolePlayPrompt = (message) => {
                 const randomRewardInt = Math.floor(Math.random() * activeScenario[0].reward.length);
                 const getAuthorDisplayName = new GetAuthorDisplayName();
     
+                //TODO: Get the message to send author name
+                //<@${message.author.id}>
                 const embed = new Discord.MessageEmbed()
                 .setColor("#28A745")
                 .setTitle(`Accepted`)
@@ -42,9 +44,9 @@ const respondToRolePlayPrompt = (message) => {
                 }
                 message.delete();
     
-                for(let i = 0; i < rolePlayData.scenarios.length; i++) {
-                    rolePlayData.scenarios[i].active = false;
-                }
+                // for(let i = 0; i < rolePlayData.scenarios.length; i++) {
+                //     rolePlayData.scenarios[i].active = false;
+                // }
 
                 //TODO: Abstract the update functionality into it's own file.
                 let json = JSON.stringify(rolePlayData, null, 2);
@@ -64,12 +66,14 @@ const respondToRolePlayPrompt = (message) => {
                 const rolePlayData = JSON.parse(data);
     
                 const getAuthorDisplayName = new GetAuthorDisplayName();
-                
+
                 //TODO: Make this testable??
                 const activeScenario = rolePlayData.scenarios.filter(x => x.active === true);
                 if(activeScenario.length <= 0)
                     return;
     
+                //TODO: Get the message to send author name
+                //<@${message.author.id}>
                 const embed = new Discord.MessageEmbed()
                 .setColor("#FF315A")
                 .setTitle(`Rejected`)
@@ -84,9 +88,9 @@ const respondToRolePlayPrompt = (message) => {
                 }
                 message.delete();
     
-                for(let i = 0; i < rolePlayData.scenarios.length; i++) {
-                    rolePlayData.scenarios[i].active = false;
-                }
+                // for(let i = 0; i < rolePlayData.scenarios.length; i++) {
+                //     rolePlayData.scenarios[i].active = false;
+                // }
 
                 //TODO: Abstract the update functionality into it's own file.
                 let json = JSON.stringify(rolePlayData, null, 2);

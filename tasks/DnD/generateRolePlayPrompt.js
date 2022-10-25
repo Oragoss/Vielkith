@@ -21,8 +21,6 @@ const generateRolePlayPrompt = (client) => {
                 rolePlayData.scenarios[i].active = false;
             }
             
-            //Some change
-            
             //TODO: Make this testable??
             const randomInt = Math.floor(Math.random() * rolePlayData.scenarios.length);
             const randomScenario = rolePlayData.scenarios[randomInt];
@@ -36,7 +34,7 @@ const generateRolePlayPrompt = (client) => {
                 {name: "To reject type:", value: `!reject`},
             )
             .setTimestamp()
-            .setFooter(`The first person to respond will determine what happens in the scenario.`)
+            .setFooter(`Everyone can respond to these scenarios now. However you are only allowed to do so once.`)
 
             for(let i = 0; i < rolePlayingChannels.length; i++) {
                 client.channels.cache.get(rolePlayingChannels[i]).send(embed)
