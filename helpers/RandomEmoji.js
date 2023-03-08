@@ -21,6 +21,12 @@ export default class RandomEmoji {
         return choice[randomInt];
     }
 
+    randomBirthdayEmoji() {
+        const choice = ['🥮', '🎂', '🍰', '🧁', '🎈', '🎉', '🎊', '✨', '🎇', '🎆'];
+        let randomInt = Math.floor(Math.random() * choice.length);
+        return choice[randomInt];
+    }
+
     randomChorusEmoji() {
         const choice = ['😲', '😯', '😮', '🙁', '😟', '🤓', '🧐', '🤠', '😎', '🥸', '😦', '😧', '🥳', '🤯', '😏', '😶‍🌫️', '😂', '😆', '🤣', '😶', '😁', '😄', '🙃', '😜', '😝', '😌', '🥰', '😍', '🤩', '😇', '🤗', '😊', '🤭', '😀', '😃', '😅', '😉', '🤑', '🤔'];
         let randomInt = Math.floor(Math.random() * choice.length);

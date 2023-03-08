@@ -29,10 +29,10 @@ const respondToRolePlayPrompt = (message) => {
                 //TODO: Get the message to send author name
                 //<@${message.author.id}>
                 const embed = new Discord.MessageEmbed()
-                .setColor("#28A745")
+                .setColor(`${activeScenario[0].rewardOnReject ? '#FF315A': '#28A745'}`)
                 .setTitle(`Accepted`)
                 .addFields(
-                    {name: `${activeScenario[0].acceptMessage}`, value: `You receive ${randomAmount} ${activeScenario[0].reward[randomRewardInt]}`}
+                    {name: `${activeScenario[0].acceptMessage}`, value: activeScenario[0].rewardOnReject ? " " : `You receive ${randomAmount > 0 ? randomAmount : ""} ${activeScenario[0].reward[randomRewardInt]}`}
                 )
                 .setFooter(`Accepted by ${getAuthorDisplayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }));
     
@@ -72,12 +72,19 @@ const respondToRolePlayPrompt = (message) => {
                 if(activeScenario.length <= 0)
                     return;
     
+                const randomRewardInt = Math.floor(Math.random() * activeScenario[0].reward.length);
+                let randomAmount = (Math.floor(Math.random() * activeScenario[0].amountMax));
+                if(randomAmount === 0)
+                    randomAmount = 1;
                 //TODO: Get the message to send author name
                 //<@${message.author.id}>
                 const embed = new Discord.MessageEmbed()
-                .setColor("#FF315A")
+                .setColor(`${activeScenario[0].rewardOnReject ? '#28A745': '#FF315A'}`)
                 .setTitle(`Rejected`)
                 .setDescription(activeScenario[0].rejectMessage || `You move on...`)
+                .addFields(
+                    {name: ` `, value: activeScenario[0].rewardOnReject ? `You receive ${randomAmount > 0 ? randomAmount : ""} ${activeScenario[0].reward[randomRewardInt]}` : " "}
+                )
                 .setFooter(`Rejected by ${getAuthorDisplayName.getAuthorDisplayName(message)}`, message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }));
     
                 for(let i = 0; i < rolePlayingChannels.length; i++) {
