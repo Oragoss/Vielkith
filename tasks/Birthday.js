@@ -9,6 +9,7 @@ export default class Reddit {
     constructor() {
     }
 
+    //Make a command to update birthday
     update(client) {
         try {
             const file = birthdayDataPath;

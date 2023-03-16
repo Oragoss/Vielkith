@@ -34,7 +34,6 @@ const roll = (message) => {
         let embed = new Discord.MessageEmbed()
             .setColor(color.randomColor())
             .setDescription(`<@${message.author.id}>, Your skill array is:`)
-            
             .addFields(
                 {name:"1st roll:", value: rollArray[0]},
                 {name:"2nd roll:", value: rollArray[1]},
