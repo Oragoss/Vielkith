@@ -26,8 +26,7 @@ const roll = (message) => {
             } else {
                 const sortScore = score.sort().filter((_,i) => i)   //This works by sorting and then creating a new array from the items where indeces are truthy(anything but 0)
                 let newScore = sortScore[0] + sortScore[1] + sortScore[2];
-                if(newScore < 8) newScore === 8;
-                rollArray.push(newScore);
+                newScore < 8 ? rollArray.push(8):rollArray.push(newScore);
             }
         }
 
