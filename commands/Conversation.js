@@ -287,7 +287,7 @@ export default class Conversation {
                     .setTimestamp()
                     .setFooter(`Asked by ${this.getAuthorDisplayName.getAuthorDisplayName(this.message)}. Type !insult if you'd like one too!`, this.message.author.avatarURL({ dynamic: true , size: 2048 , format: "png" }))   
                     this.message.channel.send(embed);
-                //If member wants to compliment another member:
+                //If member wants to insult another member:
                 } else {
                     this.message.mentions.users.map(user => {
                         this.message.channel.send(new Discord.MessageEmbed()
