@@ -7,7 +7,7 @@ const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.commandArray = [];
 
-//Tutorial: https://youtu.be/6IgOXmQMT68?list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&t=1351
+//Tutorial list: https://youtu.be/6IgOXmQMT68?list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&t=1351
 
 const functionFolders = fs.readdirSync(`./src/functions`);
 for (const folder of functionFolders) {
