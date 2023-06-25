@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const fs =require('fs');
+const fs = require('fs');
 
 module.exports = (client) => {
     client.handleCommands = async() => {

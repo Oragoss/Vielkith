@@ -5,9 +5,10 @@ const fs = require('fs');
 
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
+client.buttons = new Collection();
 client.commandArray = [];
 
-//Tutorial list: https://youtu.be/6IgOXmQMT68?list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&t=1351
+//Tutorial list: https://www.youtube.com/watch?v=Ance5go0e0M&list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&index=4
 
 const functionFolders = fs.readdirSync(`./src/functions`);
 for (const folder of functionFolders) {
@@ -20,4 +21,5 @@ for (const folder of functionFolders) {
 
 client.handleEvents();
 client.handleCommands();
+client.handleComponents();
 client.login(token);
