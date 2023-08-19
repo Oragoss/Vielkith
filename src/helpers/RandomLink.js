@@ -1,4 +1,4 @@
-export default class RandomLink {    
+class RandomLink {    
     constructor() {}
 
     randomAwesomeLink() {
@@ -52,4 +52,8 @@ export default class RandomLink {
         let randomInt = Math.floor(Math.random() * choice.length);
         return choice[randomInt];
     }
+}
+
+module.exports = {
+    RandomLink
 }
