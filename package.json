@@ -2,7 +2,7 @@
   "name": "vielkith",
   "version": "2.1.3",
   "description": "A simple chat bot for my personal servers.",
-  "main": "index.js",
+  "main": "src/bot.js",
   "author": {
     "name": "Jon Sousa",
     "url": "https://github.com/Oragoss/vielkith"
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
-    "chalk": "^5.2.0",
+    "chalk": "^4.1.2",
     "discord-api-types": "^0.37.46",
     "discord-hangman": "^1.2.2",
     "discord.js": "^14.11.0",
