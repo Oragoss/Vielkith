@@ -17,7 +17,8 @@
     "discord-api-types": "^0.37.46",
     "discord-hangman": "^1.2.2",
     "discord.js": "^14.11.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
