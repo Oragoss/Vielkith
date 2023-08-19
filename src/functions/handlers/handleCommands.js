@@ -23,16 +23,24 @@ module.exports = (client) => {
         const rest = new REST({version: '9'}).setToken(process.env.token);
         try {
             console.log('Started refreshing application (/) commands.');
-            
-            await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+
+            /**
+             * Discord server section
+             * //https://youtu.be/6IgOXmQMT68?list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&t=1906
+            */
+            //Make bot to respond to one server (also known as a guild)
+            // await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+            //     body: client.commandArray
+            // });
+
+            //Let bot respond to any server it's in
+            await rest.put(Routes.applicationCommands(applicationId), {
                 body: client.commandArray
             });
 
-            //Change this later to be in multiple guilds:
-            //https://youtu.be/6IgOXmQMT68?list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&t=1906
-            // await rest.put(Routes.applicationCommands(applicationId), {
-            //     body: client.commandArray
-            // });
+            /**
+             * End section
+             */
 
             console.log('Successfully reloaded application (/) commands.')
         } catch (error) {
