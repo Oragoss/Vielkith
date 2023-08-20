@@ -1,6 +1,3 @@
-// const { fetch } = require('node-fetch');
-// const { SplitUrlTitlesAndPhotos } = require('../../helpers/SplitUrlTitlesAndPhotos');
-// import fetch from 'node-fetch';
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
@@ -31,7 +28,7 @@ class SplitUrlTitlesAndPhotos {
         }
         //TODO: Enable gifs?
         // if(pics[rnd].isGif)
-        
+
         const rnd = Math.floor(Math.random()*pics.length)
         const urlAndTitleObject = {
             title: pics[rnd].title,
