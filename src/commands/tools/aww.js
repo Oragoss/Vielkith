@@ -16,8 +16,6 @@ module.exports = {
         const dog = await splitUrlTitlesAndPhotos.splitUrlTitlesAndPhotos('https://www.reddit.com/r/dog.json');
         const ferret = await splitUrlTitlesAndPhotos.splitUrlTitlesAndPhotos('https://www.reddit.com/r/ferret.json');
         const chinchilla = await splitUrlTitlesAndPhotos.splitUrlTitlesAndPhotos('https://www.reddit.com/r/chinchilla.json');
-        console.log('in aww.js now')
-        console.log(randomAww)
 
         //TODO: Make this faster?
         const menu = new StringSelectMenuBuilder()
