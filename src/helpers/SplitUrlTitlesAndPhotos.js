@@ -10,29 +10,30 @@ class SplitUrlTitlesAndPhotos {
     async splitUrlTitlesAndPhotos(url) {
         const response = await fetch(url, {credentials:"include"})
         const result = await response.json();
-        let pics = [];
-    
-        for (let i = 0; i < result.data.children.length; i++) {
-            let data = result.data.children[i].data;                
-            if((data.url.split('.').pop() === 'jpg') || (data.url.split('.').pop() === 'png')) {
-                pics.push({title: data.title, url: data.url, isGif: false});
-            } 
-            //TODO: Enable gifs?
-            // else if (data.url.split('.').pop() === 'gif') {
-            //     pics.push({title: data.title, url: data.url, isGif: true});
-            // }
-        }
 
-        if(pics.length <= 0) {
+        const children = result.data.children.filter((child) => {
+            const dotIndex = child?.data?.url?.lastIndexOf('.');
+            const stringExtension = child?.data?.url?.substring(dotIndex); //looking for everything that comes after . like .jpeg
+
+            if((stringExtension === '.jpeg' || stringExtension === '.jpg' || stringExtension === '.png')) {
+                const title = child.data.title;
+                const url = child.data.url;
+                return {title, url, isGif: false};
+            }
+        })
+    
+        if(children.length <= 0) {
             console.error("Couldn't find any data from the url given.")
+            return
         }
         //TODO: Enable gifs?
-        // if(pics[rnd].isGif)
+        // if(pics[rnd].isGif)        
+        
+        const rnd = Math.floor(Math.random()*children.length)
 
-        const rnd = Math.floor(Math.random()*pics.length)
         const urlAndTitleObject = {
-            title: pics[rnd].title,
-            url: pics[rnd].url
+            title: children[rnd].data.title,
+            url: children[rnd].data.url
         }
         return urlAndTitleObject;
     }

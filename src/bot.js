@@ -11,6 +11,8 @@ client.selectMenus = new Collection();
 client.commandArray = [];
 
 //Tutorial list: https://www.youtube.com/watch?v=Ance5go0e0M&list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&index=4
+//Mongodb tutorial: If you can skip to this one and do it then go back
+//https://www.youtube.com/watch?v=Ina9qiiujCQ&list=PLv0io0WjFNn9LDsv1W4fOWygNFzY342Jm&index=10
 
 const functionFolders = fs.readdirSync(`./src/functions`);
 for (const folder of functionFolders) {

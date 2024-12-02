@@ -1,5 +1,6 @@
 // list of emojis
-// http://unicode.org/emoji/charts/full-emoji-list.html
+// NEW https://emojipedia.org/
+// OLD http://unicode.org/emoji/charts/full-emoji-list.html
 export default class RandomEmoji {    
     constructor() {}
 
