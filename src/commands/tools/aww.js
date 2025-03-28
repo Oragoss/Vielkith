@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, StringSelectMenuBuilder, ActionRowBuilder, StringSelectMenuOptionBuilder} = require('discord.js');
-const { SplitUrlTitlesAndPhotos } = require('../../helpers/SplitUrlTitlesAndPhotos');
+const { SplitUrlTitlesAndPhotos } = require('../../helpers/SplitRedditUrlTitlesAndPhotos');
 const { RandomLink } = require('../../helpers/RandomLink');
 
 module.exports = {

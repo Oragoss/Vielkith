@@ -1,7 +1,7 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
-class SplitUrlTitlesAndPhotos {
+class SplitRedditUrlTitlesAndPhotos {
     /**
      * 
      * @param {string} url | This takes a url string from reddit and parses out the title from the url so they can be posted.
@@ -40,5 +40,5 @@ class SplitUrlTitlesAndPhotos {
 }
 
 module.exports = {
-    SplitUrlTitlesAndPhotos
+    SplitUrlTitlesAndPhotos: SplitRedditUrlTitlesAndPhotos
 }
